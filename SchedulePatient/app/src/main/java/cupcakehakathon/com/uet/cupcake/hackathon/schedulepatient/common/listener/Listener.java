@@ -6,16 +6,16 @@ package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listene
 
 public class Listener {
 
-    public interface listenIllness {
-        void onClick(int id);
-    }
-
     public interface listenHospital {
         void onClick(int id);
     }
 
     public interface listenFaculty {
         void onClick(int id);
+    }
+
+    public interface listenerInformation {
+        void showInformation(String name, String userName, String pass, String birthDay);
     }
 
     public interface listenerLogin {

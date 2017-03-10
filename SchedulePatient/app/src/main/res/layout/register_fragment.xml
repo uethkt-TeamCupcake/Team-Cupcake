@@ -15,6 +15,7 @@
             android:layout_height="150dp" />
 
         <LinearLayout
+            android:id="@+id/lnName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -42,7 +43,9 @@
 
         </LinearLayout>
 
+
         <LinearLayout
+            android:id="@+id/lnUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -55,15 +58,15 @@
                 android:src="@mipmap/ic_lock_outline_white_24dp" />
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/inputRegisterEmail"
+                android:id="@+id/inputRegisterUserName"
                 style="@style/TextLabelTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/edtRegisterEmail"
+                    android:id="@+id/edtRegisterUserName"
                     style="@style/EditText"
-                    android:hint="Email"
+                    android:hint="UserName"
                     android:textSize="20dp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -71,6 +74,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/lnPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -94,11 +98,13 @@
                     android:hint="Pass"
                     android:textSize="20dp" />
 
+
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/lnBirthDay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -119,13 +125,133 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtRegisterBirthDay"
                     style="@style/EditText"
-                    android:hint="Titles"
+                    android:hint="BirthDay"
                     android:textSize="20dp" />
 
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/lnIdentity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:padding="10dp"
+                android:src="@mipmap/ic_lock_outline_white_24dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputRegisterIdentity"
+                style="@style/TextLabelTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edtRegisterIdentity"
+                    style="@style/EditText"
+                    android:hint="BirthDay"
+                    android:textSize="20dp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnInsurance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:padding="10dp"
+                android:src="@mipmap/ic_lock_outline_white_24dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputRegisterInsurance"
+                style="@style/TextLabelTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edtRegisterInsurance"
+                    style="@style/EditText"
+                    android:hint="BirthDay"
+                    android:textSize="20dp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:padding="10dp"
+                android:src="@mipmap/ic_lock_outline_white_24dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputRegisterAddress"
+                style="@style/TextLabelTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edtRegisterAddress"
+                    style="@style/EditText"
+                    android:hint="BirthDay"
+                    android:textSize="20dp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lnGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:padding="10dp"
+                android:src="@mipmap/ic_lock_outline_white_24dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputRegisterGender"
+                style="@style/TextLabelTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edtRegisterGender"
+                    style="@style/EditText"
+                    android:hint="BirthDay"
+                    android:textSize="20dp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/btnRegister"
@@ -136,7 +262,7 @@
             android:background="@drawable/background_btn_login"
             android:gravity="center"
             android:padding="12dp"
-            android:text="Register"
+            android:text="Next"
             android:textColor="#fff"
             android:textSize="20dp" />
 

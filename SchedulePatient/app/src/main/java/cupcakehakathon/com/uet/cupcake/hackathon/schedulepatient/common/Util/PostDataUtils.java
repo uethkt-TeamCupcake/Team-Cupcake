@@ -85,7 +85,13 @@ public class PostDataUtils {
 
 
     private Listener.registerStatus registerStatus;
-    public static final String URL_REGISTER = "";
+    public static final String URL_REGISTER = "http://datuet.esy.es/api/api_create_patient.php";
+    private static String BIRTHDAY = "birthday";
+    private static String GENDER = "gender";
+    private static String IDENTITY_NUMBER = "identityNumber";
+    private static String INSURANCE_CODE = "insuranceCode";
+    private static String ADDRESS = "address";
+    private static String NAME = "name";
 
     public void register(final Context context, final PatientObject patientObject) {
         StringRequest stringRequest =
@@ -93,6 +99,7 @@ public class PostDataUtils {
                     @Override
                     public void onResponse(String response) {
                         String result = response.toString();
+                        Log.i(TAG, "onResponse: " + result);
                         try {
                             JSONArray arr = new JSONArray(result);
                             JSONObject js = arr.getJSONObject(0);
@@ -122,6 +129,12 @@ public class PostDataUtils {
                         Map<String, String> params = new HashMap<>();
                         params.put(USERNAME, patientObject.getUserName());
                         params.put(PASSWORD, patientObject.getPassWord());
+                        params.put(BIRTHDAY, patientObject.getBirthDay());
+                        params.put(GENDER, patientObject.getGender() + "");
+                        params.put(IDENTITY_NUMBER, patientObject.getIdentityNumber());
+                        params.put(INSURANCE_CODE, patientObject.getInsuranceCode());
+                        params.put(ADDRESS, patientObject.getAddress());
+                        params.put(NAME, patientObject.getName());
                         return params;
                     }
 
@@ -133,6 +146,7 @@ public class PostDataUtils {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
     }
+
 
     public void setLoginStatus(Listener.loginStatus loginStatus) {
         this.loginStatus = loginStatus;
