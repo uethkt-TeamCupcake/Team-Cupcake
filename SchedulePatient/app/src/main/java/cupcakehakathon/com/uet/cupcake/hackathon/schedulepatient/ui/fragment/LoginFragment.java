@@ -12,8 +12,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.R;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Constrants;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.PostDataUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.ToastUtils;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Utils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener.Listener;
 
 /**
@@ -25,7 +27,9 @@ public class LoginFragment extends BaseFragment implements Listener.loginStatus 
 
     private TextInputLayout inputUsername, inputPassword;
     private EditText edtUsername, edtPassword;
-    private TextView txtLogin;
+    private TextView txtLogin, txtSignUp;
+
+    private Listener.listenerLogin listenerLogin;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -44,6 +48,7 @@ public class LoginFragment extends BaseFragment implements Listener.loginStatus 
         edtUsername = (EditText) rootView.findViewById(R.id.edtPassword);
         edtPassword = (EditText) rootView.findViewById(R.id.edtPassword);
         txtLogin = (TextView) rootView.findViewById(R.id.btnLogin);
+        txtSignUp = (TextView) rootView.findViewById(R.id.btnSignUp);
     }
 
     @Override
@@ -64,11 +69,20 @@ public class LoginFragment extends BaseFragment implements Listener.loginStatus 
                 }
             }
         });
+
+        txtSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listenerLogin.showRegister();
+            }
+        });
     }
 
     @Override
     public void loginSuccess(int id) {
-        Log.i(TAG, "loginSuccess: id " + id);
+        Utils.setValueToPreferences(Constrants.PRERERENCES_ID_PATIENT, id + "", getActivity());
+        Utils.setValueToPreferences(Constrants.PREFERENCES_LOGIN, Constrants.LOGIN_TRUE, getActivity());
+        listenerLogin.startMain();
     }
 
     @Override
@@ -79,5 +93,9 @@ public class LoginFragment extends BaseFragment implements Listener.loginStatus 
     @Override
     public void loginRequestError() {
 
+    }
+
+    public void setListenerLogin(Listener.listenerLogin listenerLogin) {
+        this.listenerLogin = listenerLogin;
     }
 }

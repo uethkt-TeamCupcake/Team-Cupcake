@@ -1,0 +1,152 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMaterialTeal"
+    tools:context="cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.fragment.RegisterFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+
+
+        <LinearLayout
+            android:id="@+id/lnIdentity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:padding="10dp"
+                android:src="@mipmap/ic_lock_outline_white_24dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputRegisterIdentity"
+                style="@style/TextLabelTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edtRegisterIdentity"
+                    style="@style/EditText"
+                    android:hint="Identity"
+                    android:textSize="20dp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnInsurance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:padding="10dp"
+                android:src="@mipmap/ic_lock_outline_white_24dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputRegisterInsurance"
+                style="@style/TextLabelTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edtRegisterInsurance"
+                    style="@style/EditText"
+                    android:hint="Insurance"
+                    android:textSize="20dp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:padding="10dp"
+                android:src="@mipmap/ic_lock_outline_white_24dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputRegisterAddress"
+                style="@style/TextLabelTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edtRegisterAddress"
+                    style="@style/EditText"
+                    android:hint="Address"
+                    android:textSize="20dp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lnGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:padding="10dp"
+                android:src="@mipmap/ic_lock_outline_white_24dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputRegisterGender"
+                style="@style/TextLabelTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edtRegisterGender"
+                    style="@style/EditText"
+                    android:hint="Gender"
+                    android:inputType="number"
+                    android:textSize="20dp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/background_btn_login"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="Register"
+            android:textColor="#fff"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+</FrameLayout>
