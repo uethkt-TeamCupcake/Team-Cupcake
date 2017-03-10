@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="colorTextLabel">#ffffff</color>
+    <color name="colorTextEditText">#FFFFFF</color>
+    <color name="colorTextCursor">#CDDC39</color>
+
 </resources>
