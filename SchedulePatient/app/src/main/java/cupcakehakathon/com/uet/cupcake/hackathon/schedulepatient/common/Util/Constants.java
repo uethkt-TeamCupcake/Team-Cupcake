@@ -5,4 +5,5 @@ package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util;
  */
 
 public class Constants {
+    public static final String PASS_ID_HOSPITAL = "PASS_DATA";
 }

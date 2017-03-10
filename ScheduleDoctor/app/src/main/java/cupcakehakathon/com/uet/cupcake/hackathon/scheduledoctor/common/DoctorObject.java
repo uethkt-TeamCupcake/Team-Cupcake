@@ -1,4 +1,4 @@
-package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.object;
+package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common;
 
 /**
  * Created by Luong Tran on 3/10/2017.

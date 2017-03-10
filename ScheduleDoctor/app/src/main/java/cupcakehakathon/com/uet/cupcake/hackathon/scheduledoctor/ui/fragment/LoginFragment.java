@@ -1,9 +1,11 @@
 package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.ui.fragment;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
+import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
+
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.R;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.listener.Listener;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.Constants;
@@ -16,24 +18,27 @@ import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.Utils;
  */
 
 public class LoginFragment
-    extends BaseFragment
-    implements Listener.loginStatus {
+        extends BaseFragment
+        implements Listener.loginStatus {
 
-    private EditText edtLoginName, edtLoginPass;
-    private Button btnLogin;
+    private TextInputLayout inputUsername;
+    private AppCompatEditText edtUsername;
+    private TextInputLayout inputPassword;
+    private AppCompatEditText edtPassword;
+    private TextView btnLogin;
+    private TextView btnSignUp;
+
 
     private Listener.listenerLogin listenerLogin;
 
     @Override
     protected int getLayoutResource() {
-        return R.layout.material_login;
+        return R.layout.frament_login;
     }
 
     @Override
     protected void initVariables(Bundle saveInstanceState, View rootView) {
-        edtLoginName = (EditText) rootView.findViewById(R.id.edtLoginName);
-        edtLoginPass = (EditText) rootView.findViewById(R.id.edtLoginPass);
-        btnLogin = (Button) rootView.findViewById(R.id.btnLogin);
+        findViews(rootView);
     }
 
     @Override
@@ -47,8 +52,8 @@ public class LoginFragment
     }
 
     public void clickLogin() {
-        String name = edtLoginName.getText().toString();
-        String pass = edtLoginPass.getText().toString();
+        String name = edtUsername.getText().toString();
+        String pass = edtPassword.getText().toString();
         if (name.matches("")) {
             ToastUtils.quickToast(getActivity(), "Enter your name");
         } else if (pass.matches("")) {
@@ -61,15 +66,24 @@ public class LoginFragment
         }
     }
 
+    private void findViews(View rootView) {
+        inputUsername = (TextInputLayout) rootView.findViewById(R.id.inputUsername);
+        edtUsername = (AppCompatEditText) rootView.findViewById(R.id.edtUsername);
+        inputPassword = (TextInputLayout) rootView.findViewById(R.id.inputPassword);
+        edtPassword = (AppCompatEditText) rootView.findViewById(R.id.edtPassword);
+        btnLogin = (TextView) rootView.findViewById(R.id.btnLogin);
+        btnSignUp = (TextView) rootView.findViewById(R.id.btnSignUp);
+    }
+
     @Override
     public void loginSuccess(int id, int idFaculty) {
         Utils.setValueToPreferences(Constants.PREFERENCES_LOGIN,
-                                    Constants.LOGIN_TRUE,
-                                    getActivity());
+                Constants.LOGIN_TRUE,
+                getActivity());
         Utils.setValueToPreferences(Constants.PREFERENCES_LOGIN_ID, id + "", getActivity());
         Utils.setValueToPreferences(Constants.PREFERENCES_ID_FACULTY,
-                                    idFaculty + "",
-                                    getActivity());
+                idFaculty + "",
+                getActivity());
         listenerLogin.startMain();
     }
 

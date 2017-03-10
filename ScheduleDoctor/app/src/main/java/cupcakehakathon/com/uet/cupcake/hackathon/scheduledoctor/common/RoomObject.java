@@ -1,4 +1,4 @@
-package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.object;
+package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 
 public class RoomObject
-        implements Serializable {
+    implements Serializable {
 
     private int id;
     private String name;

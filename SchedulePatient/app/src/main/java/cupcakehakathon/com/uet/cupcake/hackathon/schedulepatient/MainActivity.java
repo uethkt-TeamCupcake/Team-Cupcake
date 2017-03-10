@@ -3,56 +3,101 @@ package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import java.util.ArrayList;
-
-import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Constants;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Globals;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.RecycleUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.ToastUtils;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.adapter.HospitalAdapter;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener.Listener;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.HospitalObject;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.data.SQLController;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.data.SQLHelper;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.service.PatientService;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.activity.BaseActivity;
+import java.util.ArrayList;
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private RecyclerView recyclerView;
+    private HospitalAdapter adapter;
+    private DrawerLayout drawer;
+    private Toolbar toolbar;
+    private ActionBarDrawerToggle toggle;
+    private NavigationView navigationView;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    protected int getLayoutResource() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initVariables(Bundle saveInstanceState) {
+        toolbar = (Toolbar) findViewById(R.id.toolbarMain);
+        recyclerView = (RecyclerView) findViewById(R.id.rcvHospitalMain);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+    }
+
+    @Override
+    protected void initData(Bundle saveInstanceState) {
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        Globals.idRequestResponse = 13;
+        Intent intent = new Intent(MainActivity.this, PatientService.class);
+        intent.putExtra(PatientService.CONTROL_SERVICE, PatientService.VALUE_GET_LIST_HOSPITAL);
+        startService(intent);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        SQLController controller = new SQLController(this);
+        ArrayList<HospitalObject> ls = controller.queryListHospital(SQLHelper.SQL_SELECT_ALL_HOSPITAL);
+        adapter = new HospitalAdapter(ls, this);
+        if (ls.size() > 0) {
+            RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenHospital() {
+                @Override
+                public void onClick(int id) {
+                    //Intent i = new Intent(MainActivity.this, DetailsActivity.class);
+                    //Log.i(TAG, "onClick: " + id);
+                    //i.putExtra(Constants.PASS_ID_HOSPITAL, id + 1);
+                    //startActivity(i);
+                }
+            }, MainActivity.this);
+        } else {
+            recyclerView.setVisibility(View.GONE);
+        }
+
+        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(adapter);
+        alphaAdapter.setDuration(1000);
+        alphaAdapter.setInterpolator(new OvershootInterpolator());
+        alphaAdapter.setFirstOnly(true);
+
+        alphaAdapter = new AlphaInAnimationAdapter(adapter);
+        recyclerView.setAdapter(new ScaleInAnimationAdapter(alphaAdapter));
+
+        recyclerView.setItemAnimator(new SlideInUpAnimator(new OvershootInterpolator(1f)));
+
+        recyclerView.getItemAnimator().setAddDuration(500);
+        recyclerView.getItemAnimator().setRemoveDuration(500);
+        recyclerView.getItemAnimator().setMoveDuration(500);
+        recyclerView.getItemAnimator().setChangeDuration(500);
+
+        toggle = new ActionBarDrawerToggle(
+            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -113,6 +158,22 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        registerReceiver(broadcastReceiver, new IntentFilter(PatientService.BROADCAST_EMPTY_LIST_HOSPITAL));
+        registerReceiver(broadcastReceiver, new IntentFilter(PatientService.BROADCAST_ERROR_REQ_HOSPITAL));
+        registerReceiver(broadcastReceiver, new IntentFilter(PatientService.BROADCAST_UPDATE_HOSPITAL));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (broadcastReceiver != null) {
+            unregisterReceiver(broadcastReceiver);
+        }
+    }
+
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -122,16 +183,29 @@ public class MainActivity extends AppCompatActivity
                     // update list
                     SQLController controller = new SQLController(MainActivity.this);
                     ArrayList<HospitalObject> ls = controller.queryListHospital(SQLHelper.SQL_SELECT_ALL_HOSPITAL);
+<<<<<<< HEAD
+//                    adapter = new HospitalAdapter(ls, MainActivity.this);
+//                    RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenHospital() {
+//                        @Override
+//                        public void onClick(int id) {
+//                            Intent i = new Intent(MainActivity.this, DetailsActivity.class);
+//                            i.putExtra(Constants.PASS_ID_HOSPITAL, id + 1);
+//                            startActivity(i);
+//                        }
+//                    }, MainActivity.this);
+                    break;
+=======
                     adapter = new HospitalAdapter(ls, MainActivity.this);
                     RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenHospital() {
                         @Override
                         public void onClick(int id) {
-                            Intent i = new Intent(MainActivity.this, DetailsActivity.class);
-                            i.putExtra(Constants.PASS_ID_HOSPITAL, id + 1);
-                            startActivity(i);
+                            //Intent i = new Intent(MainActivity.this, DetailsActivity.class);
+                            //i.putExtra(Constants.PASS_ID_HOSPITAL, id + 1);
+                            //startActivity(i);
                         }
                     }, MainActivity.this);
-                    break;
+                    //break;
+>>>>>>> 88bb4dc6aab2ced0bdf817e460adc2cec312ebd9
                 }
                 case PatientService.BROADCAST_ERROR_REQ_HOSPITAL: {
                     ToastUtils.quickToast(MainActivity.this, "ERROR REQUEST TO SERVER");

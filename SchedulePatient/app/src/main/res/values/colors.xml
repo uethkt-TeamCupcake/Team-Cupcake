@@ -37,5 +37,9 @@
 
     <color name="black_semi_transparent">#B2000000</color>
 
+    <color name="textHeaderColor">#212121</color>
+    <color name="textTitleColor">#717070</color>
+    <color name="dark_divider">#32393838</color>
+
 
 </resources>
