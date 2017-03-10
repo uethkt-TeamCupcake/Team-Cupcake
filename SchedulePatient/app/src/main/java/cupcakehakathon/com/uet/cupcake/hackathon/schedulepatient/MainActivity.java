@@ -1,6 +1,10 @@
 package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -12,6 +16,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.ArrayList;
+
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Constants;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.ToastUtils;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener.Listener;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.HospitalObject;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.data.SQLController;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.data.SQLHelper;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.service.PatientService;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -98,4 +112,37 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            switch (action) {
+                case PatientService.BROADCAST_UPDATE_HOSPITAL: {
+                    // update list
+                    SQLController controller = new SQLController(MainActivity.this);
+                    ArrayList<HospitalObject> ls = controller.queryListHospital(SQLHelper.SQL_SELECT_ALL_HOSPITAL);
+                    adapter = new HospitalAdapter(ls, MainActivity.this);
+                    RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenHospital() {
+                        @Override
+                        public void onClick(int id) {
+                            Intent i = new Intent(MainActivity.this, DetailsActivity.class);
+                            i.putExtra(Constants.PASS_ID_HOSPITAL, id + 1);
+                            startActivity(i);
+                        }
+                    }, MainActivity.this);
+                    break;
+                }
+                case PatientService.BROADCAST_ERROR_REQ_HOSPITAL: {
+                    ToastUtils.quickToast(MainActivity.this, "ERROR REQUEST TO SERVER");
+                    break;
+                }
+                case PatientService.BROADCAST_EMPTY_LIST_HOSPITAL: {
+                    ToastUtils.quickToast(MainActivity.this, "No data available");
+                    break;
+                }
+            }
+        }
+    };
+
 }
