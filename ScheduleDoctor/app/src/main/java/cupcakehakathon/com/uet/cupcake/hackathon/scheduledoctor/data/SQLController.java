@@ -1,11 +1,11 @@
-package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data.client;
+package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.RequestObject;
-import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.RoomObject;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.object.RequestObject;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.object.RoomObject;
 import java.util.ArrayList;
 
 /**

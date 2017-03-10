@@ -1,4 +1,4 @@
-package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common;
+package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.object;
 
 import java.io.Serializable;
 

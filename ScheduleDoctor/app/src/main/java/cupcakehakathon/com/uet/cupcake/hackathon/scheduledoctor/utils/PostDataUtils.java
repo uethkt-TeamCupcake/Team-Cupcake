@@ -10,7 +10,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.DoctorObject;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.listener.Listener;
 
 import java.util.HashMap;
@@ -27,55 +26,12 @@ import org.json.JSONObject;
 public class PostDataUtils {
     private String TAG = "POST DATA";
 
-
-    private static String NAME = "name";
-    private static String AGE = "age";
-    private static String ID_FACULTY = "idFaculty";
-    private static String ID_HOSPITAL = "idHospital";
-    //    private static String ID_PHONG = "id_phong";
-
     private static String RESPONSE_SUCCESS = "success";
     private static String RESPONSE_LOGIN_ERROR = "ERROR";
     private static String RESPONSE_FAIL = "fail";
 
 
     private Listener.loginStatus loginStatus;
-
-    private static String URL_REGISTER = "http://cupcake96uet.hol.es/create_login_patient.php";
-
-
-    public void register(final Context context, final DoctorObject doctorObject) {
-        StringRequest stringRequest =
-                new StringRequest(Request.Method.POST, URL_REGISTER, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.i("REGISTER", "onResponse: " + response.toString());
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.i("REGISTER", "onResponse: " + error.toString());
-                    }
-                }) {
-                    /**
-                     * @return
-                     */
-                    @Override
-                    protected Map<String, String> getParams() {
-                        Map<String, String> params = new HashMap<String, String>();
-                        params.put(USERNAME, doctorObject.getUserName());
-                        params.put(PASSWORD, doctorObject.getPassWord());
-                        return params;
-                    }
-
-                    @Override
-                    public Priority getPriority() {
-                        return Priority.IMMEDIATE;
-                    }
-                };
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        requestQueue.add(stringRequest);
-    }
 
     private static String USERNAME = "username";
     private static String PASSWORD = "password";
