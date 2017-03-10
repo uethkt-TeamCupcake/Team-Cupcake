@@ -1,4 +1,4 @@
-package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common;
+package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.object;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Luong Tran on 3/10/2017.
  */
 
-public class ResponseObject implements Serializable{
+public class ResponseObject implements Serializable {
 
     private int id;
     private String appointmentTime;

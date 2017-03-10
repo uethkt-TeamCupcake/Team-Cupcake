@@ -19,7 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.R;
-import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.RequestObject;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.object.RequestObject;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data.client.SQLController;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data.client.SQLHelper;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.service.DoctorService;
