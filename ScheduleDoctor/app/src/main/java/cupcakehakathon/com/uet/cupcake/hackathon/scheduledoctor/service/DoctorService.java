@@ -5,14 +5,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.AppController;
-import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.ResponseObject;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.object.ListRequest;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.object.ResponseObject;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data.SQLController;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data.SQLHelper;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data.SyncData;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.Constants;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.Utils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,7 +47,7 @@ public class DoctorService extends Service {
 
     public static final String PASS_DATA_ID_REQUEST = "ID_REQUEST";
 
-    private static String URL_GET_ALL_REQUEST = "http://cupcake96uet.hol.es/get_all_request_folow_faculty.php?id=";
+    private static String URL_GET_ALL_REQUEST = "http://datuet.esy.es/cupcake/get_all_request_folow_faculty.php?id=";
     private static String URL_CREATE_RESPONSE = "http://cupcake96uet.hol.es/api/api_create_response.php";
 
     // response
@@ -46,7 +56,7 @@ public class DoctorService extends Service {
     public static final String RESPONSE_ID_DOCTOR = "idDoctor";
     public static final String RESPONSE_ID_ROOM = "idRoom";
     public static final String RESPONSE_ID_REQUEST = "idRequest";
-    public static final String RESPONSE_APPOINTMENT_TIME_END="appointmentTimeEnd";
+    public static final String RESPONSE_APPOINTMENT_TIME_END = "appointmentTimeEnd";
     public static final String RESPONSE_DATE = "dateResponse";
 
     // room
@@ -60,16 +70,15 @@ public class DoctorService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null && intent.getExtras() != null) {
             String action = intent.getStringExtra(DoctorService.CONTROL_SERVICE);
-            ResponseObject responseObject= (ResponseObject) intent.getSerializableExtra(Constants.RESPONSE_OBJECT);
+            ResponseObject responseObject = (ResponseObject) intent.getSerializableExtra(Constants.RESPONSE_OBJECT);
             switch (action) {
                 case VALUE_GET_ALL_REQUEST_BY_FACULTY: {
-                    //getAllReq(this);
-                    int idFaculty = Integer.parseInt(Utils.getValueFromPreferences(Constants.PREFERENCES_ID_FACULTY, this));
+                    getAllRequest(this);
                     //getAllRoomFacultyWithDay(this, idFaculty, Utils.getCurrentTime(Utils.VALUES_DATE));
                     break;
                 }
                 case VALUE_POST_RESPONSE: {
-                    postResponse(getApplicationContext(),responseObject);
+                    postResponse(getApplicationContext(), responseObject);
                     break;
                 }
                 case VALUE_GET_ALL_ROOM: {
@@ -87,39 +96,39 @@ public class DoctorService extends Service {
 
     private void postResponse(final Context context, final ResponseObject responseObject) {
         StringRequest strReq =
-            new StringRequest(Request.Method.POST, URL_CREATE_RESPONSE, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    String result = response.toString();
-                    //                        Log.i(TAG, "onResponse: result + " + result);
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                }
-            }) {
-                /**
-                 * @return
-                 */
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put(RESPONSE_APPOINTMENT_TIME, responseObject.getAppointmentTime());
-                    params.put(RESPONSE_DESC, responseObject.getDescription());
-                    params.put(RESPONSE_ID_DOCTOR, responseObject.getIdDoctor() + "");
-                    params.put(RESPONSE_ID_REQUEST, responseObject.getIdRequest() + "");
-                    params.put(RESPONSE_ID_ROOM, responseObject.getIdRoom() + "");
-                    params.put(RESPONSE_DATE, responseObject.getResponseDate());
-                    params.put(RESPONSE_APPOINTMENT_TIME_END,responseObject.getApppointmentTimeEnd());
+                new StringRequest(Request.Method.POST, URL_CREATE_RESPONSE, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        String result = response.toString();
+                        //                        Log.i(TAG, "onResponse: result + " + result);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                }) {
+                    /**
+                     * @return
+                     */
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put(RESPONSE_APPOINTMENT_TIME, responseObject.getAppointmentTime());
+                        params.put(RESPONSE_DESC, responseObject.getDescription());
+                        params.put(RESPONSE_ID_DOCTOR, responseObject.getIdDoctor() + "");
+                        params.put(RESPONSE_ID_REQUEST, responseObject.getIdRequest() + "");
+                        params.put(RESPONSE_ID_ROOM, responseObject.getIdRoom() + "");
+                        params.put(RESPONSE_DATE, responseObject.getResponseDate());
+                        params.put(RESPONSE_APPOINTMENT_TIME_END, responseObject.getApppointmentTimeEnd());
 
-                    return params;
-                }
+                        return params;
+                    }
 
-                @Override
-                public Priority getPriority() {
-                    return Priority.IMMEDIATE;
-                }
-            };
+                    @Override
+                    public Priority getPriority() {
+                        return Priority.IMMEDIATE;
+                    }
+                };
         AppController.getInstance().addToRequestQueue(strReq, TAG_REQ_RESPONSE);
     }
 
@@ -127,6 +136,52 @@ public class DoctorService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+
+    private void getAllRequest(final Context context) {
+        int idFaculty = Integer.parseInt(Utils.getValueFromPreferences(Constants.PREFERENCES_ID_FACULTY, context));
+        StringRequest strReq = new StringRequest(Request.Method.GET, URL_GET_ALL_REQUEST + idFaculty, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (response != null) {
+                    String result = response.toString();
+                    Log.i(TAG, "onResponse: result" + result);
+                    Gson gson = new Gson();
+                    try {
+                        ListRequest listRequest = gson.fromJson(result, ListRequest.class);
+                        if (listRequest.getRequest().size() > 0) {
+                            SQLController controller = new SQLController(context);
+                            if (SyncData.checkRequestChange(controller.queryListRequest(SQLHelper.SQL_QUERY_ALL_REQUEST), listRequest.getRequest())) {
+                                boolean delete = controller.deleteAllData(SQLHelper.TABLE_NAME_REQUEST);
+                                for (int i = 0; i < listRequest.getRequest().size(); i++) {
+                                    boolean insert = controller.insertRequest(listRequest.getRequest().get(i));
+                                    insert = false;
+                                }
+                                Intent i = new Intent();
+                                i.setAction(DoctorService.BROADCAST_UPDATE_REQUEST);
+                                context.sendBroadcast(i);
+                            }
+                        } else {
+                            Intent i = new Intent();
+                            i.setAction(DoctorService.BROADCAST_EMPTY_LIST_REQUEST);
+                            context.sendBroadcast(i);
+                        }
+                    } catch (JsonSyntaxException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Intent i = new Intent();
+                i.setAction(DoctorService.BROADCAST_ERROR_REQ_REQUEST);
+                context.sendBroadcast(i);
+            }
+        });
+        AppController.getInstance().addToRequestQueue(strReq, TAG_REQ_REQUEST);
     }
 
 

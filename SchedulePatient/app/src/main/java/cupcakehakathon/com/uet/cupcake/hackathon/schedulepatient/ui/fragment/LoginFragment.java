@@ -4,15 +4,12 @@ package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.fragment;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.R;
-import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Constrants;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Constants;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.PostDataUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.ToastUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Utils;
@@ -80,8 +77,8 @@ public class LoginFragment extends BaseFragment implements Listener.loginStatus 
 
     @Override
     public void loginSuccess(int id) {
-        Utils.setValueToPreferences(Constrants.PRERERENCES_ID_PATIENT, id + "", getActivity());
-        Utils.setValueToPreferences(Constrants.PREFERENCES_LOGIN, Constrants.LOGIN_TRUE, getActivity());
+        Utils.setValueToPreferences(Constants.PREFERENCES_LOGIN_ID, id + "", getActivity());
+        Utils.setValueToPreferences(Constants.PREFERENCES_LOGIN, Constants.LOGIN_TRUE, getActivity());
         listenerLogin.startMain();
     }
 

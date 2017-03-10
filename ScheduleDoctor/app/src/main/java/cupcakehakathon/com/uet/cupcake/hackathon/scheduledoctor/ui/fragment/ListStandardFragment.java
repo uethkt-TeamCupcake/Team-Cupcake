@@ -12,10 +12,10 @@ import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListRoomFragment extends Fragment {
+public class ListStandardFragment extends Fragment {
 
 
-    public ListRoomFragment() {
+    public ListStandardFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class ListRoomFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_room, container, false);
+        return inflater.inflate(R.layout.fragment_list_standard, container, false);
     }
 
 }

@@ -20,15 +20,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.R;
-import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.RequestObject;
-import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data.client.SQLController;
-import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data.client.SQLHelper;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.object.RequestObject;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data.SQLController;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data.SQLHelper;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.service.DoctorService;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.ui.fragment.ListRequestFragment;
-import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.ui.fragment.ListRoomFragment;
-import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.Constants;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.ui.fragment.ListStandardFragment;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.ToastUtils;
-import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -54,27 +52,26 @@ public class MainActivity extends BaseActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-//        viewPager = (ViewPager) findViewById(R.id.viewPager);
-//        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
 
-//        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-//        viewPager.setAdapter(mSectionsPagerAdapter);
-//        tabLayout.setupWithViewPager(viewPager, false);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(mSectionsPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager, false);
 
-//        TabLayout.Tab upcoming = tabLayout.getTabAt(0);
-//        upcoming.setText("LIST REQUEST");
-//        TabLayout.Tab allMyRides = tabLayout.getTabAt(1);
-//        allMyRides.setText("LIST ROOM");
-//
+        TabLayout.Tab upcoming = tabLayout.getTabAt(0);
+        upcoming.setText("LIST REQUEST");
+        TabLayout.Tab allMyRides = tabLayout.getTabAt(1);
+        allMyRides.setText("LIST ROOM");
+
         //set text color
-//        tabLayout.setTabTextColors(ContextCompat
-//                                       .getColorStateList(this, R.color.text_pressed_black_tab));
-//        tabLayout.setSelectedTabIndicatorColor(ContextCompat
-//                .getColor(this, R.color.colorAccent));
-//
-//        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setTabTextColors(ContextCompat
+                .getColorStateList(this, R.color.md_back_ground_dark_theme));
+        tabLayout.setSelectedTabIndicatorColor(ContextCompat
+                .getColor(this, R.color.colorAccent));
 
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 
     @Override
@@ -212,7 +209,7 @@ public class MainActivity extends BaseActivity
                 case 0:
                     return new ListRequestFragment();
                 case 1:
-                    return new ListRoomFragment();
+                    return new ListStandardFragment();
             }
             return new ListRequestFragment();
         }

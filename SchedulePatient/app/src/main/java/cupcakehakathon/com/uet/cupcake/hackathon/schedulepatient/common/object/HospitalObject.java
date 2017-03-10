@@ -16,6 +16,7 @@ public class HospitalObject {
     private String longitude;
     private String phone;
     private String image;
+    private double rate;
 
     public int getId() {
         return id;
@@ -97,7 +98,25 @@ public class HospitalObject {
         this.kind = kind;
     }
 
-    public HospitalObject(int id, String name, String kind, int limit, String address, String desc, String latitude, String longitude, String phone, String image) {
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
+
+    public HospitalObject(int id,
+                          String name,
+                          String kind,
+                          int limit,
+                          String address,
+                          String desc,
+                          String latitude,
+                          String longitude,
+                          String phone,
+                          String image,
+                          double rate) {
         this.id = id;
         this.name = name;
         this.kind = kind;
@@ -108,9 +127,19 @@ public class HospitalObject {
         this.longitude = longitude;
         this.phone = phone;
         this.image = image;
+        this.rate = rate;
     }
 
-    public HospitalObject(String name, String kind, int limit, String address, String desc, String latitude, String longitude, String phone, String image) {
+    public HospitalObject(String name,
+                          String kind,
+                          int limit,
+                          String address,
+                          String desc,
+                          String latitude,
+                          String longitude,
+                          String phone,
+                          String image,
+                          double rate) {
         this.name = name;
         this.kind = kind;
         this.limit = limit;
@@ -120,6 +149,6 @@ public class HospitalObject {
         this.longitude = longitude;
         this.phone = phone;
         this.image = image;
+        this.rate = rate;
     }
-
 }

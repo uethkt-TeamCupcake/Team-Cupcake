@@ -1,4 +1,4 @@
-package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data.client;
+package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

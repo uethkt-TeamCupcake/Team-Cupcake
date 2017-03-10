@@ -8,4 +8,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+<<<<<<< HEAD
+    <string name="title_activity_maps">Map</string>
+=======
+
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+        AIzaSyDVZ-TAW0nySqVVm47B5ZJ0rozV6dNR3bQ
+    </string>
+>>>>>>> 69fb475edeee2417a6efef30cd58c8a3ae67ac89
 </resources>

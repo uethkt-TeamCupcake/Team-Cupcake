@@ -11,10 +11,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Constants;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Globals;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.RecycleUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.ToastUtils;
@@ -25,6 +27,7 @@ import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.data.SQLControl
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.data.SQLHelper;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.service.PatientService;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.activity.BaseActivity;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.activity.DetailsActivity;
 import java.util.ArrayList;
 import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
@@ -69,10 +72,10 @@ public class MainActivity extends BaseActivity
             RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenHospital() {
                 @Override
                 public void onClick(int id) {
-                    //Intent i = new Intent(MainActivity.this, DetailsActivity.class);
-                    //Log.i(TAG, "onClick: " + id);
-                    //i.putExtra(Constants.PASS_ID_HOSPITAL, id + 1);
-                    //startActivity(i);
+                    Intent i = new Intent(MainActivity.this, DetailsActivity.class);
+                    Log.i(TAG, "onClick: " + id);
+                    i.putExtra(Constants.PASS_ID_HOSPITAL, id + 1);
+                    startActivity(i);
                 }
             }, MainActivity.this);
         } else {
@@ -199,9 +202,9 @@ public class MainActivity extends BaseActivity
                     RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenHospital() {
                         @Override
                         public void onClick(int id) {
-                            //Intent i = new Intent(MainActivity.this, DetailsActivity.class);
-                            //i.putExtra(Constants.PASS_ID_HOSPITAL, id + 1);
-                            //startActivity(i);
+                            Intent i = new Intent(MainActivity.this, DetailsActivity.class);
+                            i.putExtra(Constants.PASS_ID_HOSPITAL, id + 1);
+                            startActivity(i);
                         }
                     }, MainActivity.this);
                     //break;
