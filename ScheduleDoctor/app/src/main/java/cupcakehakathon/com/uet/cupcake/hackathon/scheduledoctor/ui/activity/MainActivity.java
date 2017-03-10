@@ -18,18 +18,22 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.R;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.RequestObject;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data.client.SQLController;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data.client.SQLHelper;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.service.DoctorService;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.ui.fragment.ListRequestFragment;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.ui.fragment.ListRoomFragment;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.Constants;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.ToastUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.Utils;
+
 import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity
-    implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
@@ -50,26 +54,26 @@ public class MainActivity extends BaseActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+//        viewPager = (ViewPager) findViewById(R.id.viewPager);
+//        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(mSectionsPagerAdapter);
-        tabLayout.setupWithViewPager(viewPager, false);
+//        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+//        viewPager.setAdapter(mSectionsPagerAdapter);
+//        tabLayout.setupWithViewPager(viewPager, false);
 
-        TabLayout.Tab upcoming = tabLayout.getTabAt(0);
-        upcoming.setText("LIST REQUEST");
-        TabLayout.Tab allMyRides = tabLayout.getTabAt(1);
-        allMyRides.setText("LIST ROOM");
-
+//        TabLayout.Tab upcoming = tabLayout.getTabAt(0);
+//        upcoming.setText("LIST REQUEST");
+//        TabLayout.Tab allMyRides = tabLayout.getTabAt(1);
+//        allMyRides.setText("LIST ROOM");
+//
         //set text color
-        tabLayout.setTabTextColors(ContextCompat
-                                       .getColorStateList(this, R.color.text_pressed_black_tab));
-        tabLayout.setSelectedTabIndicatorColor(ContextCompat
-                                                   .getColor(this, R.color.colorAccent));
-
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+//        tabLayout.setTabTextColors(ContextCompat
+//                                       .getColorStateList(this, R.color.text_pressed_black_tab));
+//        tabLayout.setSelectedTabIndicatorColor(ContextCompat
+//                .getColor(this, R.color.colorAccent));
+//
+//        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
     }
 
@@ -82,7 +86,7 @@ public class MainActivity extends BaseActivity
 
         setSupportActionBar(toolbar);
         toggle = new ActionBarDrawerToggle(
-            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
@@ -140,12 +144,13 @@ public class MainActivity extends BaseActivity
 
         } else if (id == R.id.nav_send) {
 
-        } else if (id == R.id.nav_logout) {
-            Utils.deleteValueFromPreferences(Constants.PREFERENCES_LOGIN, getApplicationContext());
-            Utils.deleteValueFromPreferences(Constants.PREFERENCES_LOGIN_ID,getApplicationContext());
-            Utils.deleteValueFromPreferences(Constants.PREFERENCES_ID_FACULTY,getApplicationContext());
-            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
         }
+//        else if (id == R.id.nav_logout) {
+//            Utils.deleteValueFromPreferences(Constants.PREFERENCES_LOGIN, getApplicationContext());
+//            Utils.deleteValueFromPreferences(Constants.PREFERENCES_LOGIN_ID,getApplicationContext());
+//            Utils.deleteValueFromPreferences(Constants.PREFERENCES_ID_FACULTY,getApplicationContext());
+//            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -205,11 +210,11 @@ public class MainActivity extends BaseActivity
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    //return new ListRequestFragment();
+                    return new ListRequestFragment();
                 case 1:
-                    //return new ListRoomFragment();
+                    return new ListRoomFragment();
             }
-            //return new ListRequestFragment();
+            return new ListRequestFragment();
         }
 
         @Override

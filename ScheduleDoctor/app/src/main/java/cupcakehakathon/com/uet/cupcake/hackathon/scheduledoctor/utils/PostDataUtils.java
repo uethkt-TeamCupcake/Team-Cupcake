@@ -79,7 +79,7 @@ public class PostDataUtils {
 
     private static String USERNAME = "username";
     private static String PASSWORD = "password";
-    private static String URL_LOGIN = "http://http://datuet.esy.es/api/api_check_login_doctor.php";
+    private static String URL_LOGIN = "http://datuet.esy.es/api/api_check_login_doctor.php";
 
     public void login(final Context context, final String username, final String password) {
         StringRequest stringRequest =
@@ -87,6 +87,7 @@ public class PostDataUtils {
                     @Override
                     public void onResponse(String response) {
                         String result = response.toString();
+                        Log.i(TAG, "onResponse: " + result);
                         try {
                             JSONArray jsonArray = new JSONArray(result);
                             JSONObject jsOb = jsonArray.getJSONObject(0);
