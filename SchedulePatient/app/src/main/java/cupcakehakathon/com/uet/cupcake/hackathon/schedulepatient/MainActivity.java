@@ -3,6 +3,7 @@ package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.provider.SyncStateContract;
 import android.support.design.widget.FloatingActionButton;
@@ -67,6 +68,24 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        if (broadcastReceiver != null) {
+            unregisterReceiver(broadcastReceiver);
+        }
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // broad cast
+        registerReceiver(broadcastReceiver, new IntentFilter(PatientService.BROADCAST_EMPTY_LIST_HOSPITAL));
+        registerReceiver(broadcastReceiver, new IntentFilter(PatientService.BROADCAST_ERROR_REQ_HOSPITAL));
+        registerReceiver(broadcastReceiver, new IntentFilter(PatientService.BROADCAST_UPDATE_HOSPITAL));
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
@@ -122,15 +141,15 @@ public class MainActivity extends AppCompatActivity
                     // update list
                     SQLController controller = new SQLController(MainActivity.this);
                     ArrayList<HospitalObject> ls = controller.queryListHospital(SQLHelper.SQL_SELECT_ALL_HOSPITAL);
-                    adapter = new HospitalAdapter(ls, MainActivity.this);
-                    RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenHospital() {
-                        @Override
-                        public void onClick(int id) {
-                            Intent i = new Intent(MainActivity.this, DetailsActivity.class);
-                            i.putExtra(Constants.PASS_ID_HOSPITAL, id + 1);
-                            startActivity(i);
-                        }
-                    }, MainActivity.this);
+//                    adapter = new HospitalAdapter(ls, MainActivity.this);
+//                    RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenHospital() {
+//                        @Override
+//                        public void onClick(int id) {
+//                            Intent i = new Intent(MainActivity.this, DetailsActivity.class);
+//                            i.putExtra(Constants.PASS_ID_HOSPITAL, id + 1);
+//                            startActivity(i);
+//                        }
+//                    }, MainActivity.this);
                     break;
                 }
                 case PatientService.BROADCAST_ERROR_REQ_HOSPITAL: {
