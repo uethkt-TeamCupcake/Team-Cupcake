@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import com.andexert.library.RippleView;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -33,16 +34,17 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.ViewHo
 
         private RippleView rvHospital;
         private ImageView imgItemHospital;
-        private TextView txtItemHospitalName, txtItemHospitalLimit, txtItemHospitalAddress;
+        private TextView txtItemHospitalName, txtItemHospitalPhone, txtItemHospitalAddress;
+        private RatingBar mRatingBar;
 
         public ViewHolder(View v) {
             super(v);
             rvHospital = (RippleView) v.findViewById(R.id.rvHospital);
             imgItemHospital = (ImageView) v.findViewById(R.id.imgItemHospital);
             txtItemHospitalName = (TextView) v.findViewById(R.id.txtItemHospitalName);
-            txtItemHospitalLimit = (TextView) v.findViewById(R.id.txtItemHospitalLimit);
+            txtItemHospitalPhone = (TextView) v.findViewById(R.id.txtItemHospitalPhone);
             txtItemHospitalAddress = (TextView) v.findViewById(R.id.txtItemHospitalAddress);
-
+            mRatingBar = (RatingBar) v.findViewById(R.id.ratingBar);
             txtItemHospitalName.setSelected(true);
             txtItemHospitalAddress.setSelected(true);
         }
@@ -103,7 +105,8 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.ViewHo
             e.printStackTrace();
         }
         holder.txtItemHospitalAddress.setText(hospitalObject.getAddress());
-        holder.txtItemHospitalLimit.setText(hospitalObject.getLimit() + "");
+        holder.txtItemHospitalPhone.setText(hospitalObject.getPhone().toString());
+        holder.mRatingBar.setRating((float) hospitalObject.getRate());
         holder.rvHospital.setRippleDuration(250);
         holder.rvHospital.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
             @Override

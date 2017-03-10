@@ -1,19 +1,13 @@
 package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.fragment;
 
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatEditText;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.R;
-import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Constrants;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Constants;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.PostDataUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Utils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener.Listener;
@@ -22,7 +16,9 @@ import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.P
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InformationFragment extends BaseFragment implements Listener.registerStatus {
+public class InformationFragment
+    extends BaseFragment
+    implements Listener.registerStatus {
 
     private TextInputLayout inputRegisterIdentity;
     private AppCompatEditText edtRegisterIdentity;
@@ -38,14 +34,12 @@ public class InformationFragment extends BaseFragment implements Listener.regist
 
     private Listener.listenerLogin listenerLogin;
 
-
     public InformationFragment(String name, String userName, String pass, String birthday) {
         this.name = name;
         this.userName = userName;
         this.pass = pass;
         this.birthday = birthday;
     }
-
 
     @Override
     protected int getLayoutResource() {
@@ -68,7 +62,15 @@ public class InformationFragment extends BaseFragment implements Listener.regist
                 gender = edtRegisterGender.getText().toString();
                 PostDataUtils postDataUtils = new PostDataUtils();
                 postDataUtils.setRegisterStatus(InformationFragment.this);
-                postDataUtils.register(getActivity(), new PatientObject(name, userName, Integer.parseInt(gender), birthday, identityNumber, insuranceCode, pass, address));
+                postDataUtils.register(getActivity(),
+                                       new PatientObject(name,
+                                                         userName,
+                                                         Integer.parseInt(gender),
+                                                         birthday,
+                                                         identityNumber,
+                                                         insuranceCode,
+                                                         pass,
+                                                         address));
             }
         });
     }
@@ -76,7 +78,8 @@ public class InformationFragment extends BaseFragment implements Listener.regist
     private void findViews(View rootView) {
         inputRegisterIdentity = (TextInputLayout) rootView.findViewById(R.id.inputRegisterIdentity);
         edtRegisterIdentity = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterIdentity);
-        inputRegisterInsurance = (TextInputLayout) rootView.findViewById(R.id.inputRegisterInsurance);
+        inputRegisterInsurance =
+            (TextInputLayout) rootView.findViewById(R.id.inputRegisterInsurance);
         edtRegisterInsurance = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterInsurance);
         inputRegisterAddress = (TextInputLayout) rootView.findViewById(R.id.inputRegisterAddress);
         edtRegisterAddress = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterAddress);
@@ -87,8 +90,10 @@ public class InformationFragment extends BaseFragment implements Listener.regist
 
     @Override
     public void registerSuccess(int id) {
-        Utils.setValueToPreferences(Constrants.PRERERENCES_ID_PATIENT, id + "", getActivity());
-        Utils.setValueToPreferences(Constrants.PREFERENCES_LOGIN, Constrants.LOGIN_TRUE, getActivity());
+        Utils.setValueToPreferences(Constants.PREFERENCES_LOGIN_ID, id + "", getActivity());
+        Utils.setValueToPreferences(Constants.PREFERENCES_LOGIN,
+                                    Constants.LOGIN_TRUE,
+                                    getActivity());
         listenerLogin.startMain();
     }
 

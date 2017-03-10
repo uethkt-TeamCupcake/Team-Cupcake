@@ -26,6 +26,7 @@ public class SQLHelper extends SQLiteOpenHelper {
     public static final String HOS_PHONE = "phone";
     public static final String HOS_IMAGE = "image";
     public static final String HOS_DESCRIPTION = "description";
+    public static final String HOS_RATE = "rate";
 
     // table faculty
     public static final String TABLE_NAME_FACULTY = "FACULTY";
@@ -97,7 +98,8 @@ public class SQLHelper extends SQLiteOpenHelper {
             + HOS_LATITUDE + " TEXT NOT NULL, "
             + HOS_LONGITUDE + " TEXT NOT NULL, "
             + HOS_PHONE + " TEXT NOT NULL, "
-            + HOS_IMAGE + " TEXT NOT NULL "
+            + HOS_IMAGE + " TEXT NOT NULL, "
+            + HOS_RATE + " DOUBLE NOT NULL"
             + ")";
 
     public static final String SQL_CREATE_TABLE_FACULTY = "CREATE TABLE " + TABLE_NAME_FACULTY + " ("

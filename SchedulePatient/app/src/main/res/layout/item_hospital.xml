@@ -81,7 +81,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/txtItemHospitalLimit"
+                    android:id="@+id/txtItemHospitalPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"

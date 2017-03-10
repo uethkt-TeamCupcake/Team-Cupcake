@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.adapter.FacultyAdapter;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.adapter.HospitalAdapter;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener.Listener;
 
@@ -13,8 +14,12 @@ import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener
 
 public class RecycleUtils {
 
-    public static final void showListRcv(RecyclerView mRecycleView, HospitalAdapter adapter, Listener.listenHospital listenHospital, Context context) {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+    public static final void showListRcv(RecyclerView mRecycleView,
+                                         HospitalAdapter adapter,
+                                         Listener.listenHospital listenHospital,
+                                         Context context) {
+        LinearLayoutManager linearLayoutManager =
+            new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         mRecycleView.setHasFixedSize(true);
         mRecycleView.setLayoutManager(linearLayoutManager);
         mRecycleView.setItemAnimator(new DefaultItemAnimator());
@@ -23,5 +28,17 @@ public class RecycleUtils {
         adapter.notifyDataSetChanged();
     }
 
-
+    public static final void showListRcv(RecyclerView mRecycleView,
+                                         FacultyAdapter adapter,
+                                         Listener.listenFaculty listenFaculty,
+                                         Context context) {
+        LinearLayoutManager linearLayoutManager =
+            new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        mRecycleView.setHasFixedSize(true);
+        mRecycleView.setLayoutManager(linearLayoutManager);
+        mRecycleView.setItemAnimator(new DefaultItemAnimator());
+        mRecycleView.setAdapter(adapter);
+        adapter.setListenFaculty(listenFaculty);
+        adapter.notifyDataSetChanged();
+    }
 }

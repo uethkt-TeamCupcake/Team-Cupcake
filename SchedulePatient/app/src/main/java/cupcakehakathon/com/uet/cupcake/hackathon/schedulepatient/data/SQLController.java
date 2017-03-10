@@ -38,6 +38,7 @@ public class SQLController {
             vl.put(SQLHelper.HOS_PHONE, hospitalObject.getPhone());
             vl.put(SQLHelper.HOS_IMAGE, hospitalObject.getImage());
             vl.put(SQLHelper.HOS_DESCRIPTION, hospitalObject.getDesc());
+            vl.put(SQLHelper.HOS_RATE, hospitalObject.getRate());
             long kq = db.insert(SQLHelper.TABLE_NAME_HOSPITAL, null, vl);
             if (kq > 0) {
                 result = true;
@@ -168,7 +169,7 @@ public class SQLController {
             Cursor cs = db.rawQuery(sql, null);
             while (cs.moveToNext()) {
                 ls.add(new HospitalObject(cs.getInt(0), cs.getString(1), cs.getString(2), cs.getInt(3), cs.getString(4),
-                        cs.getString(5), cs.getString(6), cs.getString(7), cs.getString(8), cs.getString(9)));
+                        cs.getString(5), cs.getString(6), cs.getString(7), cs.getString(8), cs.getString(9), cs.getDouble(10)));
             }
             cs.close();
         } catch (Exception e) {
