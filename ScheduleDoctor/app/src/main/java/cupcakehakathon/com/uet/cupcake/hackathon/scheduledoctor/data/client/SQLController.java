@@ -4,8 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.object.RequestObject;
-import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.object.RoomObject;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.RequestObject;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.RoomObject;
 import java.util.ArrayList;
 
 /**

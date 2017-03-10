@@ -10,7 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.AppController;
-import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.object.ResponseObject;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.ResponseObject;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.Constants;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.Utils;
 import java.util.HashMap;

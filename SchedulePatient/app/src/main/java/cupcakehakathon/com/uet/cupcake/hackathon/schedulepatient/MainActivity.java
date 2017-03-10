@@ -68,24 +68,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        if (broadcastReceiver != null) {
-            unregisterReceiver(broadcastReceiver);
-        }
-    }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // broad cast
-        registerReceiver(broadcastReceiver, new IntentFilter(PatientService.BROADCAST_EMPTY_LIST_HOSPITAL));
-        registerReceiver(broadcastReceiver, new IntentFilter(PatientService.BROADCAST_ERROR_REQ_HOSPITAL));
-        registerReceiver(broadcastReceiver, new IntentFilter(PatientService.BROADCAST_UPDATE_HOSPITAL));
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
