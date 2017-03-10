@@ -1,4 +1,4 @@
-package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common;
+package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.object;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 
 public class RequestObject
-    implements Serializable {
+        implements Serializable {
     private int id;
     private String symptom;
     private String requestTime;

@@ -8,7 +8,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.DoctorObject;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.common.object.DoctorObject;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.listener.Listener;
 import java.util.HashMap;
 import java.util.Map;
