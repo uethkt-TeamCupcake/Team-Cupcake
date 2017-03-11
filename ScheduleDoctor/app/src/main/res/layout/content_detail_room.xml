@@ -5,6 +5,18 @@
     android:orientation="vertical"
     android:layout_marginTop="?attr/actionBarSize">
 
+    <RelativeLayout style="@style/RelaytiveInfo">
+
+        <TextView
+            style="@style/Text16dpBlackWrapContent"
+            android:text="Bảo hiểm" />
+
+        <TextView
+            android:id="@+id/tvInsuranceCode"
+            style="@style/TextMarquee.Text16dpBlackWrapContent"
+            android:layout_alignParentRight="true"
+            android:text="123abc123" />
+    </RelativeLayout>
     <LinearLayout
         style="@style/LinearLayoutInfor">
         <TextView
