@@ -25,5 +25,9 @@ public class Constants {
     public static final int ID_SUB_FACULTY_KIND = 2;
     public static final int ID_FACULTY_KIND = 1;
 
+    public static final String STACK_LOGIN = "STACK_LOGIN";
+    public static final String STACK_REGISTER = "STACK_REGISTER";
+    public static final String STACK_INFORMATION = "STACK_INFORMATION";
+
 
 }

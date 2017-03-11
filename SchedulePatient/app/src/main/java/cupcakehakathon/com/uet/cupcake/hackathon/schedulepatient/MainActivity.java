@@ -67,7 +67,6 @@ public class MainActivity extends BaseActivity
         if (Utils.checkNetwork(this)) {
             // if have connection. get list hospital
             Intent intent = new Intent(MainActivity.this, PatientService.class);
-            Log.i(TAG, "initData: start sẻvice");
             intent.putExtra(PatientService.CONTROL_SERVICE, PatientService.VALUE_GET_LIST_HOSPITAL);
             startService(intent);
         }
@@ -187,7 +186,7 @@ public class MainActivity extends BaseActivity
             String action = intent.getAction();
             switch (action) {
                 case PatientService.BROADCAST_UPDATE_HOSPITAL: {
-                    // update list
+                    // update list when have change to service
                     SQLController controller = new SQLController(MainActivity.this);
                     ArrayList<HospitalObject> ls = controller.queryListHospital(SQLHelper.SQL_SELECT_ALL_HOSPITAL);
                     adapter.setLsHospital(ls);
