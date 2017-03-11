@@ -1,5 +1,6 @@
 package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.fragment;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.R;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Constants;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.PostDataUtils;
@@ -19,21 +21,18 @@ import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.P
  * A simple {@link Fragment} subclass.
  */
 public class InformationFragment
-    extends BaseFragment
-    implements Listener.registerStatus {
+        extends BaseFragment
+        implements Listener.registerStatus {
 
-    private TextInputLayout inputRegisterIdentity;
     private AppCompatEditText edtRegisterIdentity;
-    private TextInputLayout inputRegisterInsurance;
     private AppCompatEditText edtRegisterInsurance;
-    private TextInputLayout inputRegisterAddress;
     private AppCompatEditText edtRegisterAddress;
-    //private TextInputLayout inputRegisterGender;
-    //private AppCompatEditText edtRegisterGender;
     private RadioGroup mRadioGroup;
     private TextView btnRegister;
+    private ProgressDialog progressDialog;
 
-    private String name, userName, pass, birthday, address, identityNumber, insuranceCode, gender;
+    private String name, userName, pass, birthday, address, identityNumber, insuranceCode;
+    private int gender;
 
     private Listener.listenerLogin listenerLogin;
 
@@ -56,71 +55,65 @@ public class InformationFragment
 
     @Override
     protected void initData(Bundle saveInstanceState) {
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setTitle("Waiting...");
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.show();
                 insuranceCode = edtRegisterInsurance.getText().toString();
                 identityNumber = edtRegisterIdentity.getText().toString();
                 address = edtRegisterAddress.getText().toString();
-                //gender = edtRegisterGender.getText().toString();
                 int id = mRadioGroup.getCheckedRadioButtonId();
-                if(id == R.id.rbMale){
-                    gender = "Male";
-                }else{
-                    gender = "Female";
+                if (id == R.id.rbMale) {
+                    gender = 1;
+                } else {
+                    gender = 0;
                 }
-
                 if (insuranceCode.matches("")
-                    || identityNumber.matches("")
-                    || address.matches("")) {
+                        || identityNumber.matches("")
+                        || address.matches("")) {
                     ToastUtils.quickToast(getActivity(), "Please input missing");
                 }
                 PostDataUtils postDataUtils = new PostDataUtils();
                 postDataUtils.setRegisterStatus(InformationFragment.this);
                 postDataUtils.register(getActivity(),
-                                       new PatientObject(name,
-                                                         userName,
-                                                        gender,
-                                                         birthday,
-                                                         identityNumber,
-                                                         insuranceCode,
-                                                         pass,
-                                                         address));
+                        new PatientObject(name,
+                                gender,
+                                identityNumber,
+                                insuranceCode,
+                                address,
+                                userName,
+                                birthday,
+                                pass));
             }
         });
     }
 
     private void findViews(View rootView) {
-        inputRegisterIdentity = (TextInputLayout) rootView.findViewById(R.id.inputRegisterIdentity);
         edtRegisterIdentity = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterIdentity);
-        inputRegisterInsurance =
-            (TextInputLayout) rootView.findViewById(R.id.inputRegisterInsurance);
         edtRegisterInsurance = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterInsurance);
-        inputRegisterAddress = (TextInputLayout) rootView.findViewById(R.id.inputRegisterAddress);
         edtRegisterAddress = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterAddress);
         mRadioGroup = (RadioGroup) rootView.findViewById(R.id.rdGender);
-        //inputRegisterGender = (TextInputLayout) rootView.findViewById(R.id.inputRegisterGender);
-        //edtRegisterGender = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterGender);
         btnRegister = (TextView) rootView.findViewById(R.id.btnRegister);
     }
 
     @Override
     public void registerSuccess(int id) {
+        progressDialog.hide();
         Utils.setValueToPreferences(Constants.PREFERENCES_LOGIN_ID, id + "", getActivity());
-        Utils.setValueToPreferences(Constants.PREFERENCES_LOGIN,
-                                    Constants.LOGIN_TRUE,
-                                    getActivity());
+        Utils.setValueToPreferences(Constants.PREFERENCES_LOGIN, Constants.LOGIN_TRUE, getActivity());
         listenerLogin.startMain();
     }
 
     @Override
     public void registerExist() {
-
+        progressDialog.hide();
     }
 
     @Override
     public void registerFail() {
-
+        progressDialog.hide();
     }
 
     public void setListenerLogin(Listener.listenerLogin listenerLogin) {

@@ -1,6 +1,7 @@
 package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.fragment;
 
 
+import android.app.ProgressDialog;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -26,6 +27,7 @@ public class LoginFragment extends BaseFragment implements Listener.loginStatus 
     private TextInputLayout inputUsername, inputPassword;
     private EditText edtUsername, edtPassword;
     private TextView txtLogin, txtSignUp;
+    private ProgressDialog progressDialog;
 
     private Listener.listenerLogin listenerLogin;
 

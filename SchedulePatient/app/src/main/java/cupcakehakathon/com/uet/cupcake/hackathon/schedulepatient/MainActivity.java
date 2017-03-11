@@ -21,6 +21,7 @@ import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Con
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Globals;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.RecycleUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.ToastUtils;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Utils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.adapter.HospitalAdapter;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener.Listener;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.HospitalObject;
@@ -63,27 +64,27 @@ public class MainActivity extends BaseActivity
     protected void initData(Bundle saveInstanceState) {
         setSupportActionBar(toolbar);
 
+        if (Utils.checkNetwork(this)) {
+            // if have connection. get list hospital
+            Intent intent = new Intent(MainActivity.this, PatientService.class);
+            Log.i(TAG, "initData: start sẻvice");
+            intent.putExtra(PatientService.CONTROL_SERVICE, PatientService.VALUE_GET_LIST_HOSPITAL);
+            startService(intent);
+        }
         Globals.idRequestResponse = 13;
-        Intent intent = new Intent(MainActivity.this, PatientService.class);
-        intent.putExtra(PatientService.CONTROL_SERVICE, PatientService.VALUE_GET_LIST_HOSPITAL);
-        startService(intent);
+
 
         SQLController controller = new SQLController(this);
         ArrayList<HospitalObject> ls = controller.queryListHospital(SQLHelper.SQL_SELECT_ALL_HOSPITAL);
         adapter = new HospitalAdapter(ls, this);
-        if (ls.size() > 0) {
-            RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenHospital() {
-                @Override
-                public void onClick(int id) {
-                    Intent i = new Intent(MainActivity.this, DetailsActivity.class);
-                    Log.i(TAG, "onClick: " + id);
-                    i.putExtra(Constants.PASS_ID_HOSPITAL, id + 1);
-                    startActivity(i);
-                }
-            }, MainActivity.this);
-        } else {
-            recyclerView.setVisibility(View.GONE);
-        }
+        RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenHospital() {
+            @Override
+            public void onClick(int id) {
+                Intent i = new Intent(MainActivity.this, DetailsActivity.class);
+                i.putExtra(Constants.PASS_ID_HOSPITAL, id + 1);
+                startActivity(i);
+            }
+        }, MainActivity.this);
 
         AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(adapter);
         alphaAdapter.setDuration(1000);

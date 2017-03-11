@@ -5,12 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.AppController;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.ListFaculty;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.ListHospital;
@@ -70,22 +73,21 @@ public class PatientService extends Service {
             @Override
             public void onResponse(String response) {
                 String result = response.toString();
+                Log.i("SERVICE", "onResponse: result hospital " + result);
                 Gson gson = new Gson();
                 try {
                     ListHospital listHospital = gson.fromJson(result, ListHospital.class);
                     if (listHospital.getHospital().size() > 0) {
                         SQLController controller = new SQLController(context);
-                        if (SyncData.checkHospitalChange(controller.queryListHospital(SQLHelper.SQL_SELECT_ALL_HOSPITAL), listHospital.getHospital())) {
-                            // need update data. delete all and insert to sqlite
-                            controller.deleteAllData(SQLHelper.TABLE_NAME_HOSPITAL);
-                            for (int i = 0; i < listHospital.getHospital().size(); i++) {
-                                boolean insert = controller.insertHospital(listHospital.getHospital().get(i));
-                                insert = false;
-                            }
-                            Intent i = new Intent();
-                            i.setAction(PatientService.BROADCAST_UPDATE_HOSPITAL);
-                            context.sendBroadcast(i);
+                        // insert to sqlite new data
+                        controller.deleteAllData(SQLHelper.TABLE_NAME_HOSPITAL);
+                        for (int i = 0; i < listHospital.getHospital().size(); i++) {
+                            boolean insert = controller.insertHospital(listHospital.getHospital().get(i));
+                            insert = false;
                         }
+                        Intent i = new Intent();
+                        i.setAction(PatientService.BROADCAST_UPDATE_HOSPITAL);
+                        context.sendBroadcast(i);
                     } else {
                         Intent i = new Intent();
                         i.setAction(PatientService.BROADCAST_EMPTY_LIST_HOSPITAL);

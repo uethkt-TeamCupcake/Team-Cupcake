@@ -11,14 +11,14 @@ import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.H
 
 public class SyncData {
 
-    public static boolean checkHospitalChange(ArrayList<HospitalObject> lsLocal, ArrayList<HospitalObject> lsServer) {
-        if (lsLocal.size() == 0) {
-            return true;
-        } else if (lsLocal.size() != lsServer.size()) {
-            return true;
-        }
-        return false;
-    }
+//    public static boolean checkHospitalChange(ArrayList<HospitalObject> lsLocal, ArrayList<HospitalObject> lsServer) {
+//        if (lsLocal.size() == 0) {
+//            return true;
+//        } else if (lsLocal.size() != lsServer.size()) {
+//            return true;
+//        }
+//        return false;
+//    }
 
     public static boolean checkFacultyChange(ArrayList<FacultyObject> lsLocal, ArrayList<FacultyObject> lsServer) {
         if (lsLocal.size() == 0) {

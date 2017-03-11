@@ -2,17 +2,21 @@ package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util;
 
 import android.content.Context;
 import android.util.Log;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener.Listener;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.PatientObject;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.RequestObject;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -104,7 +108,6 @@ public class PostDataUtils {
                     @Override
                     public void onResponse(String response) {
                         String result = response.toString();
-                        Log.i(TAG, "onResponse: " + result);
                         try {
                             JSONArray arr = new JSONArray(result);
                             JSONObject js = arr.getJSONObject(0);
@@ -122,7 +125,6 @@ public class PostDataUtils {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.i(TAG, "onErrorResponse: error " + error.toString());
                         registerStatus.registerFail();
                     }
                 }) {
@@ -165,49 +167,49 @@ public class PostDataUtils {
 
     public void sendRequest(final Context context, final RequestObject requestObject) {
         StringRequest strReq =
-            new StringRequest(Request.Method.POST, URL_SEND_REQUEST, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    try {
-                        String result = response.toString();
-                        Log.i(TAG, "onResponse: result + " + result);
-                        JSONArray arr = new JSONArray(result);
-                        JSONObject js = arr.getJSONObject(0);
-                        String status = js.getString("message");
-                        int id = js.getInt("id");
-                        if (status.equalsIgnoreCase(RESPONSE_SUCCESS)) {
-                            requestStatus.requestSuccess(id);
+                new StringRequest(Request.Method.POST, URL_SEND_REQUEST, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            String result = response.toString();
+//                            Log.i(TAG, "onResponse: result + " + result);
+                            JSONArray arr = new JSONArray(result);
+                            JSONObject js = arr.getJSONObject(0);
+                            String status = js.getString("message");
+                            int id = js.getInt("id");
+                            if (status.equalsIgnoreCase(RESPONSE_SUCCESS)) {
+                                requestStatus.requestSuccess(id);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    requestStatus.requestErrorResponse();
-                }
-            }) {
-                /**
-                 * @return
-                 */
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<String, String>();
-                    params.put(ID_PATIENT, requestObject.getIdPatient() + "");
-                    params.put(SYMPTOM, requestObject.getSymptom());
-                    params.put(REQUEST_TIME, requestObject.getRequestTime());
-                    params.put(ID_FACULTY, requestObject.getIdFaculty() + "");
-                    params.put(DAY_TARGET, requestObject.getDayTarget());
-                    params.put(CHECKED, requestObject.getChecked() + "");
-                    return params;
-                }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        requestStatus.requestErrorResponse();
+                    }
+                }) {
+                    /**
+                     * @return
+                     */
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put(ID_PATIENT, requestObject.getIdPatient() + "");
+                        params.put(SYMPTOM, requestObject.getSymptom());
+                        params.put(REQUEST_TIME, requestObject.getRequestTime());
+                        params.put(ID_FACULTY, requestObject.getIdFaculty() + "");
+                        params.put(DAY_TARGET, requestObject.getDayTarget());
+                        params.put(CHECKED, requestObject.getChecked() + "");
+                        return params;
+                    }
 
-                @Override
-                public Priority getPriority() {
-                    return Priority.IMMEDIATE;
-                }
-            };
+                    @Override
+                    public Priority getPriority() {
+                        return Priority.IMMEDIATE;
+                    }
+                };
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(strReq);
     }

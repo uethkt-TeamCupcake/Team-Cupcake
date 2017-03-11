@@ -1,9 +1,11 @@
 package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.ui.fragment;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.R;
@@ -26,9 +28,7 @@ public class LoginFragment
     private TextInputLayout inputPassword;
     private AppCompatEditText edtPassword;
     private TextView btnLogin;
-    private TextView btnSignUp;
-
-
+    private ProgressDialog progressDialog;
     private Listener.listenerLogin listenerLogin;
 
     @Override
@@ -43,26 +43,33 @@ public class LoginFragment
 
     @Override
     protected void initData(Bundle saveInstanceState) {
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setTitle("Waiting...");
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.show();
                 clickLogin();
             }
         });
     }
 
     public void clickLogin() {
-        String name = edtUsername.getText().toString();
-        String pass = edtPassword.getText().toString();
-        if (name.matches("")) {
-            ToastUtils.quickToast(getActivity(), "Enter your name");
-        } else if (pass.matches("")) {
-            ToastUtils.quickToast(getActivity(), "Enter pass");
+        if (Utils.checkNetwork(getActivity())) {
+            String name = edtUsername.getText().toString();
+            String pass = edtPassword.getText().toString();
+            if (name.matches("")) {
+                ToastUtils.quickToast(getActivity(), "Enter your name");
+            } else if (pass.matches("")) {
+                ToastUtils.quickToast(getActivity(), "Enter pass");
+            } else {
+                PostDataUtils postDataUtils = new PostDataUtils();
+                postDataUtils.setLoginStatus(this);
+                postDataUtils.login(getActivity(), name, pass);
+                ToastUtils.quickToast(getActivity(), "success");
+            }
         } else {
-            PostDataUtils postDataUtils = new PostDataUtils();
-            postDataUtils.setLoginStatus(this);
-            postDataUtils.login(getActivity(), name, pass);
-            ToastUtils.quickToast(getActivity(), "success");
+            ToastUtils.quickToast(getActivity(), "No internet connection");
         }
     }
 
@@ -76,6 +83,7 @@ public class LoginFragment
 
     @Override
     public void loginSuccess(int id, int idFaculty) {
+        progressDialog.hide();
         Utils.setValueToPreferences(Constants.PREFERENCES_LOGIN,
                 Constants.LOGIN_TRUE,
                 getActivity());
@@ -88,7 +96,8 @@ public class LoginFragment
 
     @Override
     public void loginFail() {
-        ToastUtils.quickToast(getActivity(), "Some thing wrong. Please try again");
+        progressDialog.hide();
+        ToastUtils.quickToast(getActivity(), "UserName or Password not match");
     }
 
     private void forgotPassword() {
