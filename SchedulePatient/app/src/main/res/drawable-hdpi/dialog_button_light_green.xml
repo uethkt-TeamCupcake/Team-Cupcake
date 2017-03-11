@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+
+    <item android:state_pressed="true">
+
+        <shape>
+
+            <gradient
+                android:angle="270"
+                android:endColor="@color/alert_dialog_button_green_pressed2"
+                android:startColor="@color/alert_dialog_button_green_pressed1" />
+        </shape>
+    </item>
+
+    <item android:state_focused="true">
+
+        <shape>
+
+            <gradient
+                android:angle="270"
+                android:endColor="@color/alert_dialog_button_green_focused1"
+                android:startColor="@color/alert_dialog_button_green_focused2" />
+        </shape>
+    </item>
+
+    <item>
+
+        <shape>
+
+            <gradient
+                android:angle="270"
+                android:endColor="@color/alert_dialog_button_green1"
+                android:startColor="@color/alert_dialog_button_green2" />
+        </shape>
+    </item>
+</selector>
