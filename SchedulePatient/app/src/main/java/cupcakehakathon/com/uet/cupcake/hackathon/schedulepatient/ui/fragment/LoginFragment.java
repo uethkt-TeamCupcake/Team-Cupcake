@@ -1,6 +1,7 @@
 package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.fragment;
 
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -50,6 +51,10 @@ public class LoginFragment extends BaseFragment implements Listener.loginStatus 
 
     @Override
     protected void initData(Bundle saveInstanceState) {
+
+        edtUsername.getBackground().setColorFilter(getResources().getColor(R.color.md_white_1000), PorterDuff.Mode.SRC_IN);
+        edtPassword.getBackground().setColorFilter(getResources().getColor(R.color.md_white_1000), PorterDuff.Mode.SRC_IN);
+
         txtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

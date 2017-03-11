@@ -47,7 +47,6 @@ public class DoctorService extends Service {
 
     public static final String PASS_DATA_ID_REQUEST = "ID_REQUEST";
 
-    private static String URL_GET_ALL_REQUEST = "http://datuet.esy.es/cupcake/get_all_request_folow_faculty.php?id=";
     private static String URL_CREATE_RESPONSE = "http://cupcake96uet.hol.es/api/api_create_response.php";
 
     // response
@@ -138,6 +137,8 @@ public class DoctorService extends Service {
         return null;
     }
 
+
+    private static String URL_GET_ALL_REQUEST = "http://datuet.esy.es/cupcake/get_all_request_folow_faculty.php?id=";
 
     private void getAllRequest(final Context context) {
         int idFaculty = Integer.parseInt(Utils.getValueFromPreferences(Constants.PREFERENCES_ID_FACULTY, context));

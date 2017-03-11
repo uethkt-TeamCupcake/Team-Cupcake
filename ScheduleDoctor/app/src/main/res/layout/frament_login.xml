@@ -2,76 +2,186 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorMaterialTeal"
+<<<<<<< HEAD
+    android:background="@color/colorMaterialTeal">
+=======
+    android:background="@color/primary"
     tools:context="cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.fragment.LoginFragment">
+>>>>>>> 677d03579352568f0fb2e58c809d2666a6e38659
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="10dp"
         android:orientation="vertical">
 
+<<<<<<< HEAD
+=======
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="280dp" />
+            android:src="@mipmap/scheduledoctor"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp" />
 
+>>>>>>> 677d03579352568f0fb2e58c809d2666a6e38659
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <ImageView
+<<<<<<< HEAD
+                android:id="@+id/imgAvatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+=======
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:padding="10dp"
-                android:src="@mipmap/ic_lock_outline_white_24dp" />
+                android:src="@mipmap/user" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/inputUsername"
                 style="@style/TextLabelTitle"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtUsername"
                     style="@style/EditText"
-                    android:hint="Titles"
-                    android:textSize="20dp" />
+                    android:inputType="textEmailAddress"
+                    android:hint="Tên đăng nhập"
+                    android:textSize="17dp" />
 
             </android.support.design.widget.TextInputLayout>
+>>>>>>> 677d03579352568f0fb2e58c809d2666a6e38659
 
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
+<<<<<<< HEAD
+            <LinearLayout
+=======
             <ImageView
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:padding="10dp"
-                android:src="@mipmap/ic_lock_outline_white_24dp" />
+                android:src="@mipmap/icon" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/inputPassword"
                 style="@style/TextLabelTitle"
+                android:layout_marginTop="10dp"
+>>>>>>> 677d03579352568f0fb2e58c809d2666a6e38659
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:padding="10dp"
+                    android:src="@drawable/icon_user" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/inputUsername"
+                    style="@style/TextLabelTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/edtUsername"
+                        style="@style/EditText"
+                        android:hint="Tên đăng nhập"
+                        android:textSize="20dp" />
+
+<<<<<<< HEAD
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginLeft="8dp"
+                    android:padding="10dp"
+                    android:src="@drawable/icon_lock" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/inputPassword"
+                    style="@style/TextLabelTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/edtPassword"
+                        style="@style/EditText"
+                        android:hint="Mật khẩu"
+                        android:textSize="20dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/background_btn_login"
+                android:elevation="3dp"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="Đăng nhập"
+                android:textColor="#fff"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/btnSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom|center"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:text="Đăng kí"
+                android:textColor="#fff" />
+=======
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtPassword"
                     style="@style/EditText"
-                    android:hint="Titles"
-                    android:textSize="20dp" />
+                    android:inputType="textPassword"
+                    android:hint="Mật khẩu"
+                    android:textSize="17dp" />
+>>>>>>> 677d03579352568f0fb2e58c809d2666a6e38659
 
-            </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
 
+<<<<<<< HEAD
+
+=======
         <TextView
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
@@ -82,7 +192,7 @@
             android:elevation="3dp"
             android:gravity="center"
             android:padding="12dp"
-            android:text="Login"
+            android:text="Đăng nhập"
             android:textColor="#fff"
             android:textSize="20dp" />
 
@@ -92,8 +202,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingTop="16dp"
-            android:text="SignUp"
+            android:text="Tạo tài khoản"
             android:textColor="#fff" />
+>>>>>>> 677d03579352568f0fb2e58c809d2666a6e38659
     </LinearLayout>
 
 
