@@ -329,7 +329,7 @@
                 android:layout_gravity="right"
                 android:text="Tiếp"
                 android:textColor="@color/text_press_white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
     </LinearLayout>
