@@ -25,13 +25,6 @@ public class RegisterFragment
         extends BaseFragment
         implements View.OnClickListener {
 
-<<<<<<< HEAD
-    private AppCompatEditText edtRegisterName;
-    private AppCompatEditText edtRegisterUserName;
-    private AppCompatEditText edtRegisterPass;
-    private TextInputLayout inputRegisterBirthDay;
-    private AppCompatEditText edtRegisterBirthDay;
-=======
     Listener.listenerLogin listenerLogin;
 
     private AppCompatEditText edtRegisterName;
@@ -53,7 +46,6 @@ public class RegisterFragment
     private RadioGroup mRadioGroup;
     //private TextInputLayout inputRegisterGender;
     //private AppCompatEditText edtRegisterGender;
->>>>>>> 90f4c40652b624ee41fc319dc0173888dc238a9c
     private TextView btnRegister;
 
     private String name, userName, pass, birthday = "";
@@ -79,11 +71,9 @@ public class RegisterFragment
     }
 
     private void findViews(View rootView) {
-<<<<<<< HEAD
         edtRegisterName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterName);
         edtRegisterUserName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterUserName);
         edtRegisterPass = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterPass);
-=======
 
 
         edtRegisterName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterName);
@@ -92,12 +82,9 @@ public class RegisterFragment
 
         edtRegisterPass = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterPass);
 
->>>>>>> 90f4c40652b624ee41fc319dc0173888dc238a9c
         inputRegisterBirthDay = (TextInputLayout) rootView.findViewById(R.id.inputRegisterBirthDay);
 
         edtRegisterBirthDay = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterBirthDay);
-<<<<<<< HEAD
-=======
 
         edtRegisterAddress = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterAddress);
 
@@ -114,7 +101,6 @@ public class RegisterFragment
         //inputRegisterGender = (TextInputLayout) rootView.findViewById(R.id.inputRegisterGender);
         //edtRegisterGender = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterGender);
 
->>>>>>> 90f4c40652b624ee41fc319dc0173888dc238a9c
         btnRegister = (TextView) rootView.findViewById(R.id.btnRegister);
     }
 

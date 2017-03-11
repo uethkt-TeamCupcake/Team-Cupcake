@@ -81,7 +81,7 @@
                 android:padding="5dp"
                 android:orientation="horizontal">
 
-                <cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.custom.ExpandableTextView
+                <cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.custom.ExpandableTextView
                     android:id="@+id/txtDescription"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.custom;/*
+package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.custom;/*
  * Copyright (C) 2011 The Android Open Source Project
  * Copyright 2014 Manabu Shimobe
  *

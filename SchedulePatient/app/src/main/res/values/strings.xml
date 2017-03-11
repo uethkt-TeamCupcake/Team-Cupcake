@@ -15,5 +15,6 @@
     </string>
 
     <string name="more">See more</string>
+    <string name="title_activity_list_history">ListHistoryActivity</string>
 
 </resources>

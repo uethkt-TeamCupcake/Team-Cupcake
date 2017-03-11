@@ -31,12 +31,8 @@ public class InformationFragment
     private AppCompatEditText edtRegisterAddress;
     private RadioGroup mRadioGroup;
     private TextView btnRegister;
-<<<<<<< HEAD
     private ProgressDialog progressDialog;
-=======
     private ImageView imgBack;
-
->>>>>>> 90f4c40652b624ee41fc319dc0173888dc238a9c
 
     private String name, userName, pass, birthday, address, identityNumber, insuranceCode;
     private int gender;
@@ -102,8 +98,6 @@ public class InformationFragment
         edtRegisterInsurance = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterInsurance);
         edtRegisterAddress = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterAddress);
         mRadioGroup = (RadioGroup) rootView.findViewById(R.id.rdGender);
-<<<<<<< HEAD
-=======
         imgBack = (ImageView) rootView.findViewById(R.id.imgBack);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +107,6 @@ public class InformationFragment
         });
         //inputRegisterGender = (TextInputLayout) rootView.findViewById(R.id.inputRegisterGender);
         //edtRegisterGender = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterGender);
->>>>>>> 90f4c40652b624ee41fc319dc0173888dc238a9c
         btnRegister = (TextView) rootView.findViewById(R.id.btnRegister);
     }
 
