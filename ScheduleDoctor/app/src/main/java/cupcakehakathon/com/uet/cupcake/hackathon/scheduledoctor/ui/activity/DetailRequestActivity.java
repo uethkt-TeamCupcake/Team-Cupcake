@@ -1,12 +1,17 @@
 package cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,7 +39,8 @@ import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.DialogUtil
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.ToastUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.Utils;
 
-public class DetailRequestActivity extends BaseActivity implements View.OnClickListener {
+public class DetailRequestActivity extends BaseActivity
+        implements View.OnClickListener,PopupMenu.OnMenuItemClickListener {
 
     private ImageView imgBack;
     private TextView tvTitle;
@@ -52,7 +58,7 @@ public class DetailRequestActivity extends BaseActivity implements View.OnClickL
     private RecyclerView recyclerView;
     private SQLController sqlController;
     ArrayList<RoomObject> roomObjects;
-    public static int positionSelected = 0;
+    private int selectedPosition = 0;
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private RelativeLayout layoutTimeEnd;
@@ -61,6 +67,7 @@ public class DetailRequestActivity extends BaseActivity implements View.OnClickL
     private TextView tvApppointmentTime;
     private TextView tvApppointmentTimeEnd;
     private EditText edtDescription;
+    private int positionMenu;
 
 
     @Override
@@ -100,7 +107,19 @@ public class DetailRequestActivity extends BaseActivity implements View.OnClickL
         sqlController = new SQLController(getApplicationContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         roomObjects = new ArrayList<>();
-        listRoomAdapter = new ListRoomAdapter(getApplicationContext(), roomObjects);
+        listRoomAdapter = new ListRoomAdapter(getApplicationContext(), roomObjects
+                , new ListRoomAdapter.OnRoomClickListener() {
+            @Override
+            public void onClickListener(View v, int position) {
+                changeSelectedPosition(position);
+            }
+
+            @Override
+            public void onOptionClickListener(View v, int position) {
+                positionMenu = position;
+                showPopupMenu(v);
+            }
+        });
     }
 
     @Override
@@ -142,7 +161,7 @@ public class DetailRequestActivity extends BaseActivity implements View.OnClickL
                             .parseInt(Utils.getValueFromPreferences
                                     (Constants.PREFERENCES_LOGIN_ID, getApplicationContext())));
                     //set id room
-                    responseObject.setIdRoom(positionSelected);
+                    responseObject.setIdRoom(selectedPosition);
                     //set id request
                     responseObject.setIdRequest(requestObject.getId());
 
@@ -187,5 +206,26 @@ public class DetailRequestActivity extends BaseActivity implements View.OnClickL
                 break;
         }
     }
+    public void changeSelectedPosition(int index) {
+        listRoomAdapter.notifyItemChanged(listRoomAdapter.getSelectedPosition());
+        selectedPosition = index;
+        listRoomAdapter.setSelectedPosition(selectedPosition);
+        listRoomAdapter.notifyItemChanged(selectedPosition);
+    }
+    public void showPopupMenu(View view) {
+        Context wrapper = new ContextThemeWrapper(getApplicationContext(), R.style.MyPopupMenu);
+        PopupMenu popupMenu = new PopupMenu(wrapper, view);
+        MenuInflater inflater = popupMenu.getMenuInflater();
+        inflater.inflate(R.menu.album_menu, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(this);
+        popupMenu.show();
+    }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        if(item.getItemId() == R.id.action_detail){
+            startActivity(new Intent(getApplicationContext(),DetailRoomActivity.class));
+        }
+        return false;
+    }
 }

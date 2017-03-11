@@ -172,13 +172,16 @@
                 android:text="Đau đầu,sổ mũi,..."
                 android:layout_below="@+id/tvTitleSymtom" />
         </RelativeLayout>
+        <TextView
+            style="@style/TitleGray"
+            android:text="Chọn phòng khám"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="355dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:padding="16dp"></android.support.v7.widget.RecyclerView>
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"></android.support.v7.widget.RecyclerView>
 
         <TextView
             style="@style/TitleGray"
@@ -246,7 +249,7 @@
             android:id="@+id/btnDone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="160dp"
+            android:layout_marginBottom="184dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
