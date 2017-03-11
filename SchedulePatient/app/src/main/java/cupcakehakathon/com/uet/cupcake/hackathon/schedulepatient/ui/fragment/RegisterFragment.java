@@ -25,6 +25,12 @@ public class RegisterFragment
         extends BaseFragment
         implements View.OnClickListener {
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> efc887b48d39664fbb3dcb76f473280c1c1e9049
     Listener.listenerLogin listenerLogin;
 
     private AppCompatEditText edtRegisterName;
@@ -46,6 +52,10 @@ public class RegisterFragment
     private RadioGroup mRadioGroup;
     //private TextInputLayout inputRegisterGender;
     //private AppCompatEditText edtRegisterGender;
+<<<<<<< HEAD
+=======
+
+>>>>>>> efc887b48d39664fbb3dcb76f473280c1c1e9049
     private TextView btnRegister;
 
     private String name, userName, pass, birthday = "";
@@ -71,20 +81,36 @@ public class RegisterFragment
     }
 
     private void findViews(View rootView) {
+<<<<<<< HEAD
+        edtRegisterName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterName);
+        edtRegisterUserName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterUserName);
+        edtRegisterPass = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterPass);
+=======
+
         edtRegisterName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterName);
         edtRegisterUserName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterUserName);
         edtRegisterPass = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterPass);
 
+>>>>>>> efc887b48d39664fbb3dcb76f473280c1c1e9049
+
 
         edtRegisterName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterName);
 
         edtRegisterUserName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterUserName);
 
         edtRegisterPass = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterPass);
+
+<<<<<<< HEAD
+        inputRegisterBirthDay = (TextInputLayout) rootView.findViewById(R.id.inputRegisterBirthDay);
+
+        edtRegisterBirthDay = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterBirthDay);
+=======
 
         inputRegisterBirthDay = (TextInputLayout) rootView.findViewById(R.id.inputRegisterBirthDay);
 
         edtRegisterBirthDay = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterBirthDay);
+
+>>>>>>> efc887b48d39664fbb3dcb76f473280c1c1e9049
 
         edtRegisterAddress = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterAddress);
 
@@ -101,6 +127,10 @@ public class RegisterFragment
         //inputRegisterGender = (TextInputLayout) rootView.findViewById(R.id.inputRegisterGender);
         //edtRegisterGender = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterGender);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> efc887b48d39664fbb3dcb76f473280c1c1e9049
         btnRegister = (TextView) rootView.findViewById(R.id.btnRegister);
     }
 

@@ -253,7 +253,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/background_blue_pressed"
+            android:background="@drawable/background_item_room"
             android:padding="4dp"
             android:text="Hoàn thành"
             android:textColor="@android:color/white" />
