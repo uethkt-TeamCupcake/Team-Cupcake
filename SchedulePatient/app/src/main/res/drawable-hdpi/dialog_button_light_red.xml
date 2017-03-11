@@ -9,8 +9,8 @@
 
             <gradient
                 android:angle="270"
-                android:endColor="@color/alert_dialog_button_green_pressed2"
-                android:startColor="@color/alert_dialog_button_green_pressed1" />
+                android:endColor="@color/alert_dialog_button_red_pressed2"
+                android:startColor="@color/alert_dialog_button_red_pressed1" />
         </shape>
     </item>
 
@@ -20,8 +20,8 @@
 
             <gradient
                 android:angle="270"
-                android:endColor="@color/alert_dialog_button_green_focused1"
-                android:startColor="@color/alert_dialog_button_green_focused2" />
+                android:endColor="@color/alert_dialog_button_red_focused1"
+                android:startColor="@color/alert_dialog_button_red_focused2" />
         </shape>
     </item>
 
@@ -31,8 +31,8 @@
 
             <gradient
                 android:angle="270"
-                android:endColor="@color/alert_dialog_button_green1"
-                android:startColor="@color/alert_dialog_button_green2" />
+                android:endColor="@color/alert_dialog_button_red1"
+                android:startColor="@color/alert_dialog_button_red2" />
         </shape>
     </item>
 </selector>

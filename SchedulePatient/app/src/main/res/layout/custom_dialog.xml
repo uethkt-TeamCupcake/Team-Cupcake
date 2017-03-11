@@ -15,10 +15,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".3"
-            android:text="Username:" />
+            android:text="Chọn ngày:" />
 
         <EditText
-            android:id="@+id/et_username"
+            android:id="@+id/edtDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".7"
@@ -37,25 +37,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".3"
-            android:text="Password:" />
+            android:text="Triệu chứng:" />
 
         <EditText
-            android:id="@+id/et_password"
+            android:id="@+id/edtSymptom"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".7"
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:singleLine="true" />
+            android:imeOptions="actionDone" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnSend"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Send"
-        android:textSize="@dimen/text_size_button"
-        android:background="#22764c"
-        android:textColor="#ffff"/>
 
 </LinearLayout>

@@ -1,8 +1,10 @@
 package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.activity;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -13,13 +15,15 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -40,15 +44,20 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.R;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Constants;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.DialogUtils;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.PostDataUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.RecycleUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.ToastUtils;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Utils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.adapter.FacultyAdapter;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener.Listener;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.map.MapUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.FacultyObject;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.HospitalObject;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.RequestObject;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.data.SQLController;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.data.SQLHelper;
 import java.util.ArrayList;
@@ -65,7 +74,8 @@ public class DetailsActivity
     implements OnMapReadyCallback,
                GoogleApiClient.ConnectionCallbacks,
                GoogleApiClient.OnConnectionFailedListener,
-               LocationListener {
+               LocationListener,
+               Listener.requestStatus {
 
     private String TAG = "DETAILS";
     public static final int MAX_LINES = 3;
@@ -88,6 +98,7 @@ public class DetailsActivity
     private LocationRequest mLocationRequest;
     private GoogleApiClient mGoogleApiClient;
     private LatLng mCurrentLatLng, mPlaceLatLng;
+    String targetTime = " ";
 
     @Override
     protected int getLayoutResource() {
@@ -137,7 +148,8 @@ public class DetailsActivity
         RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenFaculty() {
             @Override
             public void onClick(int id) {
-                ToastUtils.quickToast(DetailsActivity.this, "ID = " + id);
+                //ToastUtils.quickToast(DetailsActivity.this, "ID = " + id);
+                showDialog();
             }
         }, this);
         try {
@@ -174,38 +186,21 @@ public class DetailsActivity
         return true;
     }
 
-    private void seeMoreLine() {
+    @Override
+    public void requestSuccess(int id) {
+        Log.i(TAG, "requestSuccess: success " + id);
+        finish();
+        ToastUtils.quickToast(getBaseContext(), "Send request success");
+    }
 
-        final String desc = hospitalObject.getDesc();
-        txtDescription.setText(desc);
-        txtDescription.post(new Runnable() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void run() {
-                // Past the maximum number of lines we want to display.
-                if (txtDescription.getLineCount() > MAX_LINES) {
-                    int lastCharShown = txtDescription.getLayout().getLineVisibleEnd(MAX_LINES - 1);
+    @Override
+    public void requestError() {
 
-                    txtDescription.setMaxLines(MAX_LINES);
+    }
 
-                    String moreString = getApplicationContext().getString(R.string.more);
-                    String suffix = TWO_SPACES + moreString;
+    @Override
+    public void requestErrorResponse() {
 
-                    // 3 is a "magic number" but it's just basically the length of the ellipsis we're going to insert
-                    String actionDisplayText =
-                        desc.substring(0, lastCharShown - suffix.length() - 3) + "..." + suffix;
-
-                    SpannableString truncatedSpannableString =
-                        new SpannableString(actionDisplayText);
-                    int startIndex = actionDisplayText.indexOf(moreString);
-                    truncatedSpannableString.setSpan(new ForegroundColorSpan(getColor(R.color.blue)),
-                                                     startIndex,
-                                                     startIndex + moreString.length(),
-                                                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    txtDescription.setText(truncatedSpannableString);
-                }
-            }
-        });
     }
 
     private void receiveId() {
@@ -396,4 +391,107 @@ public class DetailsActivity
         mGoogleApiClient.connect();
     }
 
+    private void showDialog() {
+        LayoutInflater inflater = getLayoutInflater();
+        View alertLayout = inflater.inflate(R.layout.custom_dialog, null);
+        final EditText edtDate = (EditText) alertLayout.findViewById(R.id.edtDate);
+        final EditText edtSymptom = (EditText) alertLayout.findViewById(R.id.edtSymptom);
+
+        edtDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogUtils.dialogShowDate(DetailsActivity.this,
+                                           "Choose time",
+                                           new DatePickerDialog.OnDateSetListener() {
+                                               @Override
+                                               public void onDateSet(DatePickerDialog view,
+                                                                     int year,
+                                                                     int monthOfYear,
+                                                                     int dayOfMonth) {
+                                                   targetTime = year
+                                                       + "-"
+                                                       + (monthOfYear + 1)
+                                                       + "-"
+                                                       + dayOfMonth;
+                                                   edtDate.setText(targetTime);
+                                               }
+                                           });
+            }
+        });
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Gửi yêu cầu");
+        // this is set the view from XML inside AlertDialog
+        alert.setView(alertLayout);
+        // disallow cancel of AlertDialog on click of back button and outside touch
+        alert.setCancelable(false);
+        alert.setNegativeButton("Thoát", new DialogInterface.OnClickListener() {
+
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Button negativeButton =
+                    ((AlertDialog) dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
+                final Drawable negativeButtonDrawable =
+                    getResources().getDrawable(R.drawable.dialog_button_light_red);
+                negativeButton.setBackground(negativeButtonDrawable);
+                negativeButton.setTextColor(getResources().getColor(R.color.alert_dialog_button_red2));
+                negativeButton.invalidate();
+                Toast.makeText(getBaseContext(), "Thoát", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        alert.setPositiveButton("Gửi", new DialogInterface.OnClickListener() {
+
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Button positiveButton =
+                    ((AlertDialog) dialog).getButton(DialogInterface.BUTTON_POSITIVE);
+                final Drawable negativeButtonDrawable =
+                    getResources().getDrawable(R.drawable.dialog_button_light_green);
+                positiveButton.setTextColor(getResources().getColor(R.color.alert_dialog_button_red2));
+                positiveButton.invalidate();
+
+                if (targetTime.equalsIgnoreCase("")) {
+                    ToastUtils.quickToast(DetailsActivity.this, "Choose time first");
+                } else {
+                    String timeRequest = Utils.getCurrentTime(Utils.VALUES_DATE)
+                        + " "
+                        + Utils.getCurrentTime(Utils.VALUES_TIME);
+                    String symptom = edtSymptom.getText().toString();
+                    if (symptom.equalsIgnoreCase("")) {
+                        ToastUtils.quickToast(DetailsActivity.this, "Choose time first");
+                    } else {
+                        PostDataUtils postDataUtils = new PostDataUtils();
+                        postDataUtils.setRequestStatus(DetailsActivity.this);
+                        String idPatient =
+                            Utils.getValueFromPreferences(Constants.PREFERENCES_LOGIN_ID,
+                                                          getBaseContext());
+                        RequestObject requestObject = new RequestObject(Integer.parseInt(idPatient),
+                                                                        symptom,
+                                                                        timeRequest,
+                                                                        1,
+                                                                        0,
+                                                                        targetTime);
+                        postDataUtils.sendRequest(getBaseContext(),
+                                                  new RequestObject(Integer.parseInt(idPatient),
+                                                                    symptom,
+                                                                    timeRequest,
+                                                                    1,
+                                                                    0,
+                                                                    targetTime));
+                        SQLController sqlController = new SQLController(getBaseContext());
+                        boolean insert = sqlController.insertRequest(requestObject);
+                        insert = false;
+                    }
+                }
+            }
+        });
+        AlertDialog dialog = alert.create();
+        dialog.show();
+    }
 }
+
+

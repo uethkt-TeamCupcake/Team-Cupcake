@@ -10,4 +10,6 @@
     <dimen name="margin_right_of_title_main">16dp</dimen>
     <dimen name="margin_top_of_title_main">16dp</dimen>
     <dimen name="text_size_describe_title_main">16dp</dimen>
+
+    <dimen name="text_size_button">16sp</dimen>
 </resources>
