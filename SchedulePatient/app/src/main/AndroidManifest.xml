@@ -19,10 +19,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
-=======
-
->>>>>>> 677d03579352568f0fb2e58c809d2666a6e38659
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -32,11 +28,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 677d03579352568f0fb2e58c809d2666a6e38659
         <service
             android:name=".service.PatientService"
             android:enabled="true" />
@@ -68,20 +59,17 @@
             android:value="@string/google_maps_key" />
 
         <activity
-<<<<<<< HEAD
             android:name=".ui.activity.DetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
-=======
+        <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"></activity>
-
 
 
         <activity
             android:name=".ui.activity.DetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
->>>>>>> 677d03579352568f0fb2e58c809d2666a6e38659
     </application>
 
 </manifest>
