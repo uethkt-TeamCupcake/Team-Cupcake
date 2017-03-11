@@ -37,6 +37,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtRegisterIdentity"
                     style="@style/EditText"
+                    android:inputType="number"
                     android:hint="Số chứng minh thư"
                     android:textSize="16dp" />
 
@@ -66,6 +67,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtRegisterInsurance"
                     style="@style/EditText"
+                    android:inputType="number"
                     android:hint="Số bảo hiểm y tế"
                     android:textSize="16dp" />
 

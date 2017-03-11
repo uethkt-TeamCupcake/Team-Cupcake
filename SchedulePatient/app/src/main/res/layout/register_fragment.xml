@@ -10,286 +10,312 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="150dp" />
-
         <LinearLayout
-            android:id="@+id/lnName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:padding="10dp"
-                android:src="@drawable/ic_user" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/inputRegisterName"
-                style="@style/TextLabelTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/edtRegisterName"
-                    style="@style/EditText"
-                    android:hint="Họ và Tên"
-                    android:textSize="16dp" />
-
-            </android.support.design.widget.TextInputLayout>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/lnUserName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:padding="10dp"
-                android:src="@drawable/ic_user" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/inputRegisterUserName"
-                style="@style/TextLabelTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/edtRegisterUserName"
-                    style="@style/EditText"
-                    android:hint="Tên đăng nhập"
-                    android:textSize="16dp" />
-
-            </android.support.design.widget.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lnPass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="54dp"
-                android:layout_height="54dp"
-                android:padding="10dp"
-                android:src="@mipmap/ic_lock_outline_white_24dp" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/inputRegisterPass"
-                style="@style/TextLabelTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/edtRegisterPass"
-                    style="@style/EditText"
-                    android:hint="Mật khẩu"
-                    android:password="true"
-                    android:textSize="16dp" />
-
-
-            </android.support.design.widget.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lnBirthDay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:padding="10dp"
-                android:src="@drawable/ic_calendar" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/inputRegisterBirthDay"
-                style="@style/TextLabelTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/edtRegisterBirthDay"
-                    style="@style/EditText"
-                    android:hint="Ngày sinh"
-                    android:textSize="16dp" />
-
-            </android.support.design.widget.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lnIdentity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <ImageView
-                android:layout_width="54dp"
-                android:layout_height="54dp"
-                android:padding="10dp"
-                android:src="@drawable/ic_identity_card" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/inputRegisterIdentity"
-                style="@style/TextLabelTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/edtRegisterIdentity"
-                    style="@style/EditText"
-                    android:hint="Số chứng minh thư"
-                    android:textSize="16dp" />
-
-            </android.support.design.widget.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lnInsurance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <ImageView
-                android:layout_width="54dp"
-                android:layout_height="54dp"
-                android:padding="10dp"
-                android:src="@mipmap/ic_lock_outline_white_24dp" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/inputRegisterInsurance"
-                style="@style/TextLabelTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/edtRegisterInsurance"
-                    style="@style/EditText"
-                    android:hint="Số bảo hiểm"
-                    android:textSize="20dp" />
-
-            </android.support.design.widget.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lnAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <ImageView
-                android:layout_width="54dp"
-                android:layout_height="54dp"
-                android:padding="10dp"
-                android:src="@mipmap/ic_lock_outline_white_24dp" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/inputRegisterAddress"
-                style="@style/TextLabelTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/edtRegisterAddress"
-                    style="@style/EditText"
-                    android:hint="Địa chỉ"
-                    android:textSize="20dp" />
-
-            </android.support.design.widget.TextInputLayout>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/lnGender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:padding="10dp"
-                android:src="@mipmap/ic_lock_outline_white_24dp" />
-
-            <RadioGroup
-                android:id="@+id/rdGender"
+                android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_resigter" />
 
-                <RadioButton
-                    android:id="@+id/rbMale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nam" />
+        </LinearLayout>
 
-                <RadioButton
-                    android:id="@+id/rbFemale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="Nữ" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
 
-            </RadioGroup>
-
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/inputRegisterGender"
-                style="@style/TextLabelTitle"
+            <LinearLayout
+                android:id="@+id/lnName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_user" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/inputRegisterName"
+                    style="@style/TextLabelTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/edtRegisterName"
+                        style="@style/EditText"
+                        android:focusable="true"
+                        android:hint="Họ và Tên"
+                        android:textSize="16dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/lnUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_user" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/inputRegisterUserName"
+                    style="@style/TextLabelTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/edtRegisterUserName"
+                        style="@style/EditText"
+                        android:focusable="true"
+                        android:hint="Tên đăng nhập"
+                        android:textSize="16dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:padding="10dp"
+                    android:src="@mipmap/ic_lock_outline_white_24dp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/inputRegisterPass"
+                    style="@style/TextLabelTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/edtRegisterPass"
+                        style="@style/EditText"
+                        android:focusable="true"
+                        android:hint="Mật khẩu"
+                        android:password="true"
+                        android:textSize="16dp" />
+
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnBirthDay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_calendar" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/inputRegisterBirthDay"
+                    style="@style/TextLabelTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/edtRegisterBirthDay"
+                        style="@style/EditText"
+                        android:hint="Ngày sinh"
+                        android:textSize="16dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnIdentity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
                 android:visibility="gone">
 
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/edtRegisterGender"
-                    style="@style/EditText"
-                    android:hint="Gender"
-                    android:textSize="20dp"
-                    android:visibility="gone" />
+                <ImageView
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_identity_card" />
 
-            </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/inputRegisterIdentity"
+                    style="@style/TextLabelTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/edtRegisterIdentity"
+                        style="@style/EditText"
+                        android:hint="Số chứng minh thư"
+                        android:textSize="16dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnInsurance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:padding="10dp"
+                    android:src="@mipmap/ic_lock_outline_white_24dp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/inputRegisterInsurance"
+                    style="@style/TextLabelTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/edtRegisterInsurance"
+                        style="@style/EditText"
+                        android:hint="Số bảo hiểm"
+                        android:textSize="20dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:padding="10dp"
+                    android:src="@mipmap/ic_lock_outline_white_24dp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/inputRegisterAddress"
+                    style="@style/TextLabelTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/edtRegisterAddress"
+                        style="@style/EditText"
+                        android:hint="Địa chỉ"
+                        android:textSize="20dp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/lnGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:padding="10dp"
+                    android:src="@mipmap/ic_lock_outline_white_24dp" />
+
+                <RadioGroup
+                    android:id="@+id/rdGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/rbMale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nam" />
+
+                    <RadioButton
+                        android:id="@+id/rbFemale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Nữ" />
+
+                </RadioGroup>
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/inputRegisterGender"
+                    style="@style/TextLabelTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/edtRegisterGender"
+                        style="@style/EditText"
+                        android:hint="Gender"
+                        android:textSize="20dp"
+                        android:visibility="gone" />
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btnRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/background_btn_login"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="Tiếp"
+                android:textColor="#fff"
+                android:textSize="20dp" />
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/btnRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:background="@drawable/background_btn_login"
-            android:gravity="center"
-            android:padding="12dp"
-            android:text="Tiếp"
-            android:textColor="#fff"
-            android:textSize="20dp" />
-
     </LinearLayout>
 
 </FrameLayout>
