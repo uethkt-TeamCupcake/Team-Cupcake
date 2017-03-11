@@ -19,8 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
-=======
+
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -31,7 +30,7 @@
             android:value="@string/google_maps_key" />
 
 
->>>>>>> 69fb475edeee2417a6efef30cd58c8a3ae67ac89
+
         <service
             android:name=".service.PatientService"
             android:enabled="true" />
@@ -49,7 +48,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -65,16 +64,12 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"></activity>
-=======
 
-        <activity
-            android:name=".MapsActivity"
-            android:label="Map" />
+
 
         <activity
             android:name=".ui.activity.DetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
->>>>>>> 69fb475edeee2417a6efef30cd58c8a3ae67ac89
     </application>
 
 </manifest>

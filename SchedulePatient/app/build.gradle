@@ -7,6 +7,7 @@ android {
         applicationId "cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient"
         minSdkVersion 15
         targetSdkVersion 25
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -27,6 +28,7 @@ dependencies {
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support:multidex:1.0.1'
     compile 'com.android.support:design:25.2.0'
     compile 'com.google.android.gms:play-services:7.5.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
@@ -34,6 +36,6 @@ dependencies {
     compile 'com.android.support:support-v4:25.2.0'
     compile 'com.github.traex.rippleeffect:library:1.3'
     compile 'jp.wasabeef:recyclerview-animators:2.2.5'
-    compile 'com.google.android.gms:play-services-maps:10.2.0'
+    compile 'com.google.android.gms:play-services-maps:7.5.0'
     testCompile 'junit:junit:4.12'
 }

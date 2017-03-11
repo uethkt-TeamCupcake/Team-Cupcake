@@ -186,18 +186,7 @@ public class MainActivity extends BaseActivity
                     // update list
                     SQLController controller = new SQLController(MainActivity.this);
                     ArrayList<HospitalObject> ls = controller.queryListHospital(SQLHelper.SQL_SELECT_ALL_HOSPITAL);
-<<<<<<< HEAD
-//                    adapter = new HospitalAdapter(ls, MainActivity.this);
-//                    RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenHospital() {
-//                        @Override
-//                        public void onClick(int id) {
-//                            Intent i = new Intent(MainActivity.this, DetailsActivity.class);
-//                            i.putExtra(Constants.PASS_ID_HOSPITAL, id + 1);
-//                            startActivity(i);
-//                        }
-//                    }, MainActivity.this);
-                    break;
-=======
+
                     adapter = new HospitalAdapter(ls, MainActivity.this);
                     RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenHospital() {
                         @Override
@@ -207,8 +196,10 @@ public class MainActivity extends BaseActivity
                             startActivity(i);
                         }
                     }, MainActivity.this);
-                    //break;
->>>>>>> 88bb4dc6aab2ced0bdf817e460adc2cec312ebd9
+                    break;
+
+
+
                 }
                 case PatientService.BROADCAST_ERROR_REQ_HOSPITAL: {
                     ToastUtils.quickToast(MainActivity.this, "ERROR REQUEST TO SERVER");
