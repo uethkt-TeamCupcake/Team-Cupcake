@@ -8,58 +8,41 @@ public class PatientObject {
 
     private int id;
     private String name;
-
-    private String gender;
+    private int gender;
     private String identityNumber;
     private String insuranceCode;
     private String address;
-
-    private String email;
     private String userName;
     private String birthDay;
     private String passWord;
 
-    public PatientObject(String email, String userName, String birthDay, String passWord) {
-        this.email = email;
-        this.userName = userName;
-        this.birthDay = birthDay;
-        this.passWord = passWord;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public PatientObject(int id, String name, String userName, String gender, String birthDay, String identityNumber, String insuranceCode, String passWord, String address) {
+    public PatientObject(int id, String name, int gender, String identityNumber,
+                         String insuranceCode, String address, String userName, String birthDay, String passWord) {
         this.id = id;
         this.name = name;
-        this.userName = userName;
         this.gender = gender;
-        this.birthDay = birthDay;
         this.identityNumber = identityNumber;
         this.insuranceCode = insuranceCode;
-        this.passWord = passWord;
         this.address = address;
+        this.userName = userName;
+        this.birthDay = birthDay;
+        this.passWord = passWord;
     }
 
-    public PatientObject(String name, String userName, String gender, String birthDay, String identityNumber, String insuranceCode, String passWord, String address) {
+    public PatientObject(String name, int gender, String identityNumber, String insuranceCode,
+                         String address, String userName, String birthDay, String passWord) {
 
         this.name = name;
-        this.userName = userName;
         this.gender = gender;
-        this.birthDay = birthDay;
         this.identityNumber = identityNumber;
         this.insuranceCode = insuranceCode;
-        this.passWord = passWord;
         this.address = address;
+        this.userName = userName;
+        this.birthDay = birthDay;
+        this.passWord = passWord;
     }
 
     public int getId() {
-
         return id;
     }
 
@@ -75,28 +58,12 @@ public class PatientObject {
         this.name = name;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
-    }
-
-    public String getBirthDay() {
-        return birthDay;
-    }
-
-    public void setBirthDay(String birthDay) {
-        this.birthDay = birthDay;
     }
 
     public String getIdentityNumber() {
@@ -115,14 +82,6 @@ public class PatientObject {
         this.insuranceCode = insuranceCode;
     }
 
-    public String getPassWord() {
-        return passWord;
-    }
-
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -131,4 +90,27 @@ public class PatientObject {
         this.address = address;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(String birthDay) {
+        this.birthDay = birthDay;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
 }

@@ -39,4 +39,5 @@ dependencies {
     compile 'com.google.android.gms:play-services-maps:7.5.0'
     testCompile 'junit:junit:4.12'
     compile 'com.wdullaer:materialdatetimepicker:2.5.0'
+    compile 'com.ms-square:expandableTextView:0.1.4'
 }

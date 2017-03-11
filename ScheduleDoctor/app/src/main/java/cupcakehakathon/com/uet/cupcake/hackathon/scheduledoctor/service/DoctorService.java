@@ -147,7 +147,6 @@ public class DoctorService extends Service {
             public void onResponse(String response) {
                 if (response != null) {
                     String result = response.toString();
-                    Log.i(TAG, "onResponse: result" + result);
                     Gson gson = new Gson();
                     try {
                         ListRequest listRequest = gson.fromJson(result, ListRequest.class);

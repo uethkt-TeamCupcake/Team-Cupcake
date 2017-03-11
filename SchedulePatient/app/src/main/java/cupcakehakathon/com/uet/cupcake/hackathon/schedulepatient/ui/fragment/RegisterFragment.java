@@ -5,11 +5,15 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.R;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.FragmentUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.DialogUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.ToastUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener.Listener;
@@ -18,39 +22,41 @@ import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener
  * A simple {@link Fragment} subclass.
  */
 public class RegisterFragment
-    extends BaseFragment
-    implements View.OnClickListener {
+        extends BaseFragment
+        implements View.OnClickListener {
 
-    private LinearLayout lnName;
-    private TextInputLayout inputRegisterName;
+<<<<<<< HEAD
     private AppCompatEditText edtRegisterName;
-    private LinearLayout lnUserName;
-    private TextInputLayout inputRegisterUserName;
     private AppCompatEditText edtRegisterUserName;
-    private LinearLayout lnPass;
-    private TextInputLayout inputRegisterPass;
     private AppCompatEditText edtRegisterPass;
-    private LinearLayout lnBirthDay;
     private TextInputLayout inputRegisterBirthDay;
     private AppCompatEditText edtRegisterBirthDay;
-    private LinearLayout lnIdentity;
-    private TextInputLayout inputRegisterIdentity;
-    private AppCompatEditText edtRegisterIdentity;
-    private LinearLayout lnInsurance;
-    private TextInputLayout inputRegisterInsurance;
-    private AppCompatEditText edtRegisterInsurance;
-    private LinearLayout lnAddress;
-    private TextInputLayout inputRegisterAddress;
+=======
+    Listener.listenerLogin listenerLogin;
+
+    private AppCompatEditText edtRegisterName;
+
+
+    private AppCompatEditText edtRegisterUserName;
+
+
+    private AppCompatEditText edtRegisterPass;
+
+    private TextInputLayout inputRegisterBirthDay;
+    private AppCompatEditText edtRegisterBirthDay;
+
+
     private AppCompatEditText edtRegisterAddress;
-    private LinearLayout lnGender;
+
+    private ImageView imgBack;
+
     private RadioGroup mRadioGroup;
     //private TextInputLayout inputRegisterGender;
     //private AppCompatEditText edtRegisterGender;
+>>>>>>> 90f4c40652b624ee41fc319dc0173888dc238a9c
     private TextView btnRegister;
-    DialogUtils du = new DialogUtils();
 
-    private String name, userName, pass, birthday, address, identityNumber, insuranceCode, gender;
-    private boolean checkFirst = true;
+    private String name, userName, pass, birthday = "";
     private Listener.listenerInformation listenerInformation;
 
     @Override
@@ -60,46 +66,55 @@ public class RegisterFragment
 
     @Override
     public void onClick(View v) {
-        du.dialogShowDate(getActivity(), "Choose Date", new DatePickerDialog.OnDateSetListener() {
+        DialogUtils.dialogShowDate(getActivity(), "Choose Date", new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePickerDialog view,
                                   int year,
                                   int monthOfYear,
                                   int dayOfMonth) {
-                String date = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
-                edtRegisterBirthDay.setText(date);
+                birthday = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                edtRegisterBirthDay.setText(birthday);
             }
         });
     }
 
     private void findViews(View rootView) {
-        lnName = (LinearLayout) rootView.findViewById(R.id.lnName);
-        inputRegisterName = (TextInputLayout) rootView.findViewById(R.id.inputRegisterName);
+<<<<<<< HEAD
         edtRegisterName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterName);
-        lnUserName = (LinearLayout) rootView.findViewById(R.id.lnUserName);
-        inputRegisterUserName = (TextInputLayout) rootView.findViewById(R.id.inputRegisterUserName);
         edtRegisterUserName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterUserName);
-        lnPass = (LinearLayout) rootView.findViewById(R.id.lnPass);
-        inputRegisterPass = (TextInputLayout) rootView.findViewById(R.id.inputRegisterPass);
         edtRegisterPass = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterPass);
-        lnBirthDay = (LinearLayout) rootView.findViewById(R.id.lnBirthDay);
+=======
+
+
+        edtRegisterName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterName);
+
+        edtRegisterUserName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterUserName);
+
+        edtRegisterPass = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterPass);
+
+>>>>>>> 90f4c40652b624ee41fc319dc0173888dc238a9c
         inputRegisterBirthDay = (TextInputLayout) rootView.findViewById(R.id.inputRegisterBirthDay);
+
         edtRegisterBirthDay = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterBirthDay);
-        lnIdentity = (LinearLayout) rootView.findViewById(R.id.lnIdentity);
-        inputRegisterIdentity = (TextInputLayout) rootView.findViewById(R.id.inputRegisterIdentity);
-        edtRegisterIdentity = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterIdentity);
-        lnInsurance = (LinearLayout) rootView.findViewById(R.id.lnInsurance);
-        inputRegisterInsurance =
-            (TextInputLayout) rootView.findViewById(R.id.inputRegisterInsurance);
-        edtRegisterInsurance = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterInsurance);
-        lnAddress = (LinearLayout) rootView.findViewById(R.id.lnAddress);
-        inputRegisterAddress = (TextInputLayout) rootView.findViewById(R.id.inputRegisterAddress);
+<<<<<<< HEAD
+=======
+
         edtRegisterAddress = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterAddress);
-        lnGender = (LinearLayout) rootView.findViewById(R.id.lnGender);
+
         mRadioGroup = (RadioGroup) rootView.findViewById(R.id.rdGender);
+
+        imgBack = (ImageView) rootView.findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listenerLogin.showLogin();
+            }
+        });
+
         //inputRegisterGender = (TextInputLayout) rootView.findViewById(R.id.inputRegisterGender);
         //edtRegisterGender = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterGender);
 
+>>>>>>> 90f4c40652b624ee41fc319dc0173888dc238a9c
         btnRegister = (TextView) rootView.findViewById(R.id.btnRegister);
     }
 
@@ -116,11 +131,10 @@ public class RegisterFragment
                 name = edtRegisterName.getText().toString();
                 userName = edtRegisterUserName.getText().toString();
                 pass = edtRegisterPass.getText().toString();
-                birthday = edtRegisterBirthDay.getText().toString();
                 if (name.matches("")
-                    || userName.matches("")
-                    || pass.matches("")
-                    || birthday.matches("")) {
+                        || userName.matches("")
+                        || pass.matches("")
+                        || birthday.matches("")) {
                     ToastUtils.quickToast(getActivity(), "Please input missing");
                 } else {
                     listenerInformation.showInformation(name, userName, pass, birthday);
@@ -131,8 +145,10 @@ public class RegisterFragment
         edtRegisterBirthDay.setClickable(true);
         edtRegisterBirthDay.setOnClickListener(this);
         inputRegisterBirthDay.setOnClickListener(this);
+    }
 
-
+    public void setListenerLogin(Listener.listenerLogin listenerLogin) {
+        this.listenerLogin = listenerLogin;
     }
 
     public void setListenerInformation(Listener.listenerInformation listenerInformation) {

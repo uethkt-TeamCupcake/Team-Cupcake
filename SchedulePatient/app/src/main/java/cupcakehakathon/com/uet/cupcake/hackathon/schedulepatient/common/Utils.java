@@ -2,7 +2,10 @@ package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
+
 import java.util.Calendar;
 
 /**
@@ -12,6 +15,18 @@ import java.util.Calendar;
 public class Utils {
     public static final String VALUES_TIME = "TIME";
     public static final String VALUES_DATE = "DATE";
+
+
+    public static boolean checkNetwork(Context context) {
+        boolean available = false;
+        ConnectivityManager cn = (ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = cn.getActiveNetworkInfo();
+        if (info != null && info.isAvailable() && info.isConnected()) {
+            available = true;
+        }
+        return available;
+    }
+
 
     public static String getCurrentTime(String dateOrTime) {
         Calendar cal = Calendar.getInstance();

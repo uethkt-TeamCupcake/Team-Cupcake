@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarDetails"
@@ -48,41 +48,107 @@
         android:background="#ffe5e5e5"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:padding="5dp"
             android:paddingTop="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
 
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:max="5"
+                    android:layout_gravity="center_horizontal"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:numStars="4"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal">
+
+                <cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.custom.ExpandableTextView
+                    android:id="@+id/txtDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:textSize="15sp"
+                    android:text="Địa chỉ"/>
+
+                <TextView
+                    android:id="@+id/txtAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7.5"
+                    android:textSize="15sp"
+                    android:text="Hà Nội, Việt Nam"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:textSize="15sp"
+                    android:text="Điện thoại"/>
+
+                <TextView
+                    android:id="@+id/txtPhone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7.5"
+                    android:textSize="15sp"
+                    android:text="0973548875"/>
+
+            </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="LIST " />
+                android:text="LIST "
+                android:visibility="gone"/>
 
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rcvFaculty"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="vertical">
+                android:nestedScrollingEnabled="true">
 
             </android.support.v7.widget.RecyclerView>
-
-            <TextView
-                android:id="@+id/txtSend"
-                android:background="#6c2222"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="SEND" />
-
-            <fragment
-                android:id="@+id/fmMaps"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                class="cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.map.WorkaroundMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="210dp" />
-
 
         </LinearLayout>
 

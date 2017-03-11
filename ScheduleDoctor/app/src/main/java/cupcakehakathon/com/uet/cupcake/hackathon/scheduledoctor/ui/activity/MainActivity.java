@@ -82,6 +82,7 @@ public class MainActivity extends BaseActivity
     @Override
     protected void initData(Bundle saveInstanceState) {
 
+
         Intent intent = new Intent(MainActivity.this, DoctorService.class);
         intent.putExtra(DoctorService.CONTROL_SERVICE, DoctorService.VALUE_GET_ALL_REQUEST_BY_FACULTY);
         startService(intent);
@@ -147,10 +148,10 @@ public class MainActivity extends BaseActivity
         } else if (id == R.id.nav_send) {
 
         } else if (id == R.id.nav_logout) {
-            Utils.deleteValueFromPreferences(Constants.PREFERENCES_LOGIN,getApplicationContext());
-            Utils.deleteValueFromPreferences(Constants.PREFERENCES_LOGIN_ID,getApplicationContext());
-            Utils.deleteValueFromPreferences(Constants.PREFERENCES_ID_FACULTY,getApplicationContext());
-            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+            Utils.deleteValueFromPreferences(Constants.PREFERENCES_LOGIN, getApplicationContext());
+            Utils.deleteValueFromPreferences(Constants.PREFERENCES_LOGIN_ID, getApplicationContext());
+            Utils.deleteValueFromPreferences(Constants.PREFERENCES_ID_FACULTY, getApplicationContext());
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

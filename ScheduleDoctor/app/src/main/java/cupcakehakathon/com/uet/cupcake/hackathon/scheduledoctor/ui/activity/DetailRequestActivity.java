@@ -111,6 +111,7 @@ public class DetailRequestActivity extends BaseActivity
                 , new ListRoomAdapter.OnRoomClickListener() {
             @Override
             public void onClickListener(View v, int position) {
+                tvApppointmentTime.setText(roomObjects.get(position).getTimeAvailable());
                 changeSelectedPosition(position);
             }
 
@@ -166,12 +167,12 @@ public class DetailRequestActivity extends BaseActivity
                     responseObject.setIdRequest(requestObject.getId());
 
                     //set time start
-                    responseObject.setAppointmentTime("13:30");
+                    responseObject.setAppointmentTime(roomObjects.get(selectedPosition).getTimeAvailable());
 
                     //desc
                     responseObject.setDescription(edtDescription.getText().toString().trim());
                     //set time end
-                    responseObject.setApppointmentTimeEnd("15:30");
+                    responseObject.setApppointmentTimeEnd(time);
                     //get current date
                     String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
                     responseObject.setResponseDate(date);

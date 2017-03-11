@@ -1,36 +1,55 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:background="@color/colorMaterialTeal"
-             tools:context="cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.fragment.RegisterFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    tools:context="cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.fragment.RegisterFragment">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            android:elevation="0dp"
+            app:elevation="0dp">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imgBack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back_white" />
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="240dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_resigter" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
 
         <LinearLayout
+            android:layout_marginTop="48dp"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_resigter" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingLeft="16dp"
@@ -304,16 +323,13 @@
 
             <TextView
                 android:id="@+id/btnRegister"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:background="@drawable/background_btn_login"
-                android:gravity="center"
-                android:padding="12dp"
+                android:layout_marginTop="24dp"
+                android:layout_gravity="right"
                 android:text="Tiếp"
-                android:textColor="#fff"
-                android:textSize="20dp" />
+                android:textColor="@color/text_press_white"
+                android:textSize="20sp" />
 
         </LinearLayout>
     </LinearLayout>

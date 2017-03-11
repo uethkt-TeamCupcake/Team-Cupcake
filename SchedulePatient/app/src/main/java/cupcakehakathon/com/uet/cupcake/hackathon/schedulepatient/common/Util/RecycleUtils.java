@@ -33,7 +33,7 @@ public class RecycleUtils {
                                          Listener.listenFaculty listenFaculty,
                                          Context context) {
         LinearLayoutManager linearLayoutManager =
-            new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+            new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         mRecycleView.setHasFixedSize(true);
         mRecycleView.setLayoutManager(linearLayoutManager);
         mRecycleView.setItemAnimator(new DefaultItemAnimator());
