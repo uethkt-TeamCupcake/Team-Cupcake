@@ -1,9 +1,9 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorMaterialTeal"
-    tools:context="cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.fragment.RegisterFragment">
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/colorMaterialTeal"
+             tools:context="cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.fragment.RegisterFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,10 +22,10 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:padding="10dp"
-                android:src="@mipmap/ic_lock_outline_white_24dp" />
+                android:src="@drawable/ic_user" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/inputRegisterName"
@@ -36,8 +36,8 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtRegisterName"
                     style="@style/EditText"
-                    android:hint="Name"
-                    android:textSize="20dp" />
+                    android:hint="Họ và Tên"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -52,10 +52,10 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:padding="10dp"
-                android:src="@mipmap/ic_lock_outline_white_24dp" />
+                android:src="@drawable/ic_user" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/inputRegisterUserName"
@@ -66,8 +66,8 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtRegisterUserName"
                     style="@style/EditText"
-                    android:hint="UserName"
-                    android:textSize="20dp" />
+                    android:hint="Tên đăng nhập"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -81,8 +81,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
                 android:padding="10dp"
                 android:src="@mipmap/ic_lock_outline_white_24dp" />
 
@@ -95,8 +95,9 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtRegisterPass"
                     style="@style/EditText"
-                    android:hint="Pass"
-                    android:textSize="20dp" />
+                    android:hint="Mật khẩu"
+                    android:password="true"
+                    android:textSize="16dp" />
 
 
             </android.support.design.widget.TextInputLayout>
@@ -111,10 +112,10 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:padding="10dp"
-                android:src="@mipmap/ic_lock_outline_white_24dp" />
+                android:src="@drawable/ic_calendar" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/inputRegisterBirthDay"
@@ -125,8 +126,8 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtRegisterBirthDay"
                     style="@style/EditText"
-                    android:hint="BirthDay"
-                    android:textSize="20dp" />
+                    android:hint="Ngày sinh"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -141,10 +142,10 @@
             android:visibility="gone">
 
             <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
                 android:padding="10dp"
-                android:src="@mipmap/ic_lock_outline_white_24dp" />
+                android:src="@drawable/ic_identity_card" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/inputRegisterIdentity"
@@ -155,8 +156,8 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtRegisterIdentity"
                     style="@style/EditText"
-                    android:hint="BirthDay"
-                    android:textSize="20dp" />
+                    android:hint="Số chứng minh thư"
+                    android:textSize="16dp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -171,8 +172,8 @@
             android:visibility="gone">
 
             <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
                 android:padding="10dp"
                 android:src="@mipmap/ic_lock_outline_white_24dp" />
 
@@ -185,7 +186,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtRegisterInsurance"
                     style="@style/EditText"
-                    android:hint="BirthDay"
+                    android:hint="Số bảo hiểm"
                     android:textSize="20dp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -201,8 +202,8 @@
             android:visibility="gone">
 
             <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
                 android:padding="10dp"
                 android:src="@mipmap/ic_lock_outline_white_24dp" />
 
@@ -215,7 +216,7 @@
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtRegisterAddress"
                     style="@style/EditText"
-                    android:hint="BirthDay"
+                    android:hint="Địa chỉ"
                     android:textSize="20dp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -237,17 +238,40 @@
                 android:padding="10dp"
                 android:src="@mipmap/ic_lock_outline_white_24dp" />
 
+            <RadioGroup
+                android:id="@+id/rdGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/rbMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nam" />
+
+                <RadioButton
+                    android:id="@+id/rbFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Nữ" />
+
+            </RadioGroup>
+
+
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/inputRegisterGender"
                 style="@style/TextLabelTitle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edtRegisterGender"
                     style="@style/EditText"
-                    android:hint="BirthDay"
-                    android:textSize="20dp" />
+                    android:hint="Gender"
+                    android:textSize="20dp"
+                    android:visibility="gone" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -262,7 +286,7 @@
             android:background="@drawable/background_btn_login"
             android:gravity="center"
             android:padding="12dp"
-            android:text="Next"
+            android:text="Tiếp"
             android:textColor="#fff"
             android:textSize="20dp" />
 

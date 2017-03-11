@@ -190,7 +190,14 @@ public class MainActivity extends BaseActivity
                     SQLController controller = new SQLController(MainActivity.this);
                     ArrayList<HospitalObject> ls = controller.queryListHospital(SQLHelper.SQL_SELECT_ALL_HOSPITAL);
                     adapter.setLsHospital(ls);
-
+                    RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenHospital() {
+                        @Override
+                        public void onClick(int id) {
+                            Intent i = new Intent(MainActivity.this, DetailsActivity.class);
+                            i.putExtra(Constants.PASS_ID_HOSPITAL, id + 1);
+                            startActivity(i);
+                        }
+                    }, MainActivity.this);
                     break;
                 }
                 case PatientService.BROADCAST_ERROR_REQ_HOSPITAL: {

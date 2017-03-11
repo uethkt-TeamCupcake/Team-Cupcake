@@ -52,4 +52,12 @@
         <item name="android:textColor">#ffffff</item>
     </style>
 
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/md_red_700</item>
+        <!--title and message color-->
+        <item name="android:textColorPrimary">#212121</item>
+        <!--dialog background-->
+        <item name="android:windowBackground">@drawable/background_dialog_color</item>
+    </style>
+
 </resources>
