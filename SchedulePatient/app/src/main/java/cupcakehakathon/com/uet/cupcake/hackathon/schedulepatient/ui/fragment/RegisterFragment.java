@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.R;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.FragmentUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.DialogUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.ToastUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener.Listener;
@@ -22,7 +23,7 @@ public class RegisterFragment
     extends BaseFragment
     implements View.OnClickListener {
 
-
+    Listener.listenerLogin listenerLogin;
 
     private AppCompatEditText edtRegisterName;
 
@@ -90,7 +91,7 @@ public class RegisterFragment
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().finish();
+                listenerLogin.showLogin();
             }
         });
 
@@ -130,6 +131,10 @@ public class RegisterFragment
         inputRegisterBirthDay.setOnClickListener(this);
 
 
+    }
+
+    public void setListenerLogin(Listener.listenerLogin listenerLogin) {
+        this.listenerLogin = listenerLogin;
     }
 
     public void setListenerInformation(Listener.listenerInformation listenerInformation) {

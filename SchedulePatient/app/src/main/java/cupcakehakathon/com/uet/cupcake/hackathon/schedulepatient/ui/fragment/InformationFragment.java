@@ -36,6 +36,7 @@ public class InformationFragment
     private TextView btnRegister;
     private ImageView imgBack;
 
+
     private String name, userName, pass, birthday, address, identityNumber, insuranceCode, gender;
 
     private Listener.listenerLogin listenerLogin;
@@ -106,7 +107,7 @@ public class InformationFragment
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().finish();
+                listenerLogin.showRegister();
             }
         });
         //inputRegisterGender = (TextInputLayout) rootView.findViewById(R.id.inputRegisterGender);
