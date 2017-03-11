@@ -1,8 +1,17 @@
 package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient;
 
+<<<<<<< HEAD
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+=======
+
+import android.support.v4.app.FragmentActivity;
+import android.os.Bundle;
+
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+>>>>>>> 677d03579352568f0fb2e58c809d2666a6e38659
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -11,9 +20,15 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+<<<<<<< HEAD
     /**
      * Created by Luong Tran on 3/11/2017.
      */
+=======
+/**
+ * Created by Luong Tran on 3/11/2017.
+ */
+>>>>>>> 677d03579352568f0fb2e58c809d2666a6e38659
 
     private GoogleMap mMap;
 
@@ -22,12 +37,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+<<<<<<< HEAD
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
 
+=======
+        SupportMapFragment
+                mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+    }
+
+>>>>>>> 677d03579352568f0fb2e58c809d2666a6e38659
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -47,3 +70,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 677d03579352568f0fb2e58c809d2666a6e38659
