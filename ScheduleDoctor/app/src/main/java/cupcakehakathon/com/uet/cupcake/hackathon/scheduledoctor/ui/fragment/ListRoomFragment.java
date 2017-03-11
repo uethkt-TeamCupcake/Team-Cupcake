@@ -34,7 +34,17 @@ public class ListRoomFragment extends BaseFragment {
         sqlController = new SQLController(getActivity());
         recyclerView.setLayoutManager( new LinearLayoutManager(getActivity()));
         roomObjects = new ArrayList<>();
-        listRoomAdapter = new ListRoomAdapter(getActivity(),roomObjects);
+        listRoomAdapter = new ListRoomAdapter(getActivity(), roomObjects, new ListRoomAdapter.OnRoomClickListener() {
+            @Override
+            public void onClickListener(View v, int position) {
+
+            }
+
+            @Override
+            public void onOptionClickListener(View v, int position) {
+
+            }
+        });
     }
 
     @Override

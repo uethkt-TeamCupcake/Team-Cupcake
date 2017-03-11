@@ -2,23 +2,20 @@ package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util;
 
 import android.content.Context;
 import android.util.Log;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener.Listener;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.PatientObject;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.RequestObject;
+import java.util.HashMap;
+import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener.Listener;
-import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.PatientObject;
 
 /**
  * Created by NgocThai on 10/03/2017.
@@ -34,8 +31,16 @@ public class PostDataUtils {
 
     private static String USERNAME = "userName";
     private static String PASSWORD = "passWord";
+
+    private static String ID_PATIENT = "idPatient";
+    private static String SYMPTOM = "symptom";
+    private static String REQUEST_TIME = "requestTime";
+    private static String ID_FACULTY = "idFaculty";
+    private static String DAY_TARGET = "dayTarget";
+    private static String CHECKED = "checked";
     private Listener.loginStatus loginStatus;
     public static final String URL_LOGIN = "http://datuet.esy.es/api/api_check_login_patient.php";
+    private static String URL_SEND_REQUEST = "http://datuet.esy.es/api/api_create_request_patient.php";
 
     public void login(final Context context, final String username, final String password) {
         StringRequest stringRequest =
@@ -154,5 +159,60 @@ public class PostDataUtils {
 
     public void setRegisterStatus(Listener.registerStatus registerStatus) {
         this.registerStatus = registerStatus;
+    }
+
+    private Listener.requestStatus requestStatus;
+
+    public void sendRequest(final Context context, final RequestObject requestObject) {
+        StringRequest strReq =
+            new StringRequest(Request.Method.POST, URL_SEND_REQUEST, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        String result = response.toString();
+                        Log.i(TAG, "onResponse: result + " + result);
+                        JSONArray arr = new JSONArray(result);
+                        JSONObject js = arr.getJSONObject(0);
+                        String status = js.getString("message");
+                        int id = js.getInt("id");
+                        if (status.equalsIgnoreCase(RESPONSE_SUCCESS)) {
+                            requestStatus.requestSuccess(id);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    requestStatus.requestErrorResponse();
+                }
+            }) {
+                /**
+                 * @return
+                 */
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put(ID_PATIENT, requestObject.getIdPatient() + "");
+                    params.put(SYMPTOM, requestObject.getSymptom());
+                    params.put(REQUEST_TIME, requestObject.getRequestTime());
+                    params.put(ID_FACULTY, requestObject.getIdFaculty() + "");
+                    params.put(DAY_TARGET, requestObject.getDayTarget());
+                    params.put(CHECKED, requestObject.getChecked() + "");
+                    return params;
+                }
+
+                @Override
+                public Priority getPriority() {
+                    return Priority.IMMEDIATE;
+                }
+            };
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(strReq);
+    }
+
+    public void setRequestStatus(Listener.requestStatus requestStatus) {
+        this.requestStatus = requestStatus;
     }
 }

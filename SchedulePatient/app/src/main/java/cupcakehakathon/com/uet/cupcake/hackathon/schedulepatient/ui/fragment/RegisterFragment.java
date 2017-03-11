@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.R;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.DialogUtils;
@@ -68,7 +67,6 @@ public class RegisterFragment
                                   int monthOfYear,
                                   int dayOfMonth) {
                 String date = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
-                Toast.makeText(getContext(), "date : " + date, Toast.LENGTH_SHORT).show();
                 edtRegisterBirthDay.setText(date);
             }
         });
@@ -134,16 +132,6 @@ public class RegisterFragment
         edtRegisterBirthDay.setOnClickListener(this);
         inputRegisterBirthDay.setOnClickListener(this);
 
-        int idRadio =  mRadioGroup.getCheckedRadioButtonId();
-        switch (idRadio){
-            case R.id.rbMale:
-                gender = "Male";
-                break;
-            case R.id.rbFemale:
-                gender = "Female";
-                break;
-
-        }
 
     }
 

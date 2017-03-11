@@ -1,6 +1,7 @@
 package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -147,8 +148,8 @@ public class DetailsActivity
         txtSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(DetailsActivity.this, SendRequestActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(DetailsActivity.this, SendRequestActivity.class);
+                startActivity(intent);
             }
         });
 

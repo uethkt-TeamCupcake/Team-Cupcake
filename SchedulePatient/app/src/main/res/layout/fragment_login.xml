@@ -25,7 +25,7 @@
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:src="@drawable/schedule_patient" />
 
@@ -91,6 +91,7 @@
                         <android.support.v7.widget.AppCompatEditText
                             android:id="@+id/edtPassword"
                             style="@style/EditText"
+                            android:password="true"
                             android:hint="Mật khẩu"
                             android:textSize="20dp" />
 
