@@ -200,7 +200,7 @@
             android:gravity="center"
             android:text="Register"
             android:textColor="@color/text_press_white"
-            android:textSize="22dp" />
+            android:textSize="22sp" />
 
     </LinearLayout>
 

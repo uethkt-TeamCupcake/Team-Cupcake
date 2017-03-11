@@ -24,6 +24,7 @@ public class Constants {
 
     public static final int ID_SUB_FACULTY_KIND = 2;
     public static final int ID_FACULTY_KIND = 1;
+    public static final String STORE_USERNAME = "store_username";
 
 
 }

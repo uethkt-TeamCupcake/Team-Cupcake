@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ public class LoginFragment extends BaseFragment implements Listener.loginStatus 
     private TextView txtLogin, txtSignUp;
 
     private Listener.listenerLogin listenerLogin;
+    private CheckBox checkBox;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -43,17 +45,27 @@ public class LoginFragment extends BaseFragment implements Listener.loginStatus 
     protected void initVariables(Bundle saveInstanceState, View rootView) {
         inputUsername = (TextInputLayout) rootView.findViewById(R.id.inputUsername);
         inputPassword = (TextInputLayout) rootView.findViewById(R.id.inputPassword);
-        edtUsername = (EditText) rootView.findViewById(R.id.edtPassword);
+        edtUsername = (EditText) rootView.findViewById(R.id.edtUsername);
         edtPassword = (EditText) rootView.findViewById(R.id.edtPassword);
         txtLogin = (TextView) rootView.findViewById(R.id.btnLogin);
         txtSignUp = (TextView) rootView.findViewById(R.id.btnSignUp);
+        checkBox = (CheckBox) rootView.findViewById(R.id.checkStoreUsername);
+
     }
 
     @Override
     protected void initData(Bundle saveInstanceState) {
 
-        edtUsername.getBackground().setColorFilter(getResources().getColor(R.color.md_white_1000), PorterDuff.Mode.SRC_IN);
-        edtPassword.getBackground().setColorFilter(getResources().getColor(R.color.md_white_1000), PorterDuff.Mode.SRC_IN);
+        if (Utils.getValueFromPreferences(Constants.STORE_USERNAME, getActivity()) != null) {
+            edtUsername.setText(Utils.getValueFromPreferences(Constants.STORE_USERNAME, getActivity()));
+            checkBox.setChecked(true);
+        }
+
+
+        edtUsername.getBackground().setColorFilter(getResources().getColor(R.color.md_white_1000)
+                , PorterDuff.Mode.SRC_IN);
+        edtPassword.getBackground().setColorFilter(getResources().getColor(R.color.md_white_1000)
+                , PorterDuff.Mode.SRC_IN);
 
         txtLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +79,10 @@ public class LoginFragment extends BaseFragment implements Listener.loginStatus 
                     edtPassword.setError("bạn phải nhập mật khẩu");
                     edtPassword.setFocusable(true);
                 } else {
+                    if (checkBox.isChecked()) {
+                        Utils.setValueToPreferences(Constants.STORE_USERNAME
+                                , edtUsername.getText().toString(), getActivity());
+                    }
                     PostDataUtils postDataUtils = new PostDataUtils();
                     postDataUtils.setLoginStatus(LoginFragment.this);
                     postDataUtils.login(getActivity(), name, pass);
@@ -74,9 +90,11 @@ public class LoginFragment extends BaseFragment implements Listener.loginStatus 
             }
         });
 
+
         txtSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 listenerLogin.showRegister();
             }
         });
