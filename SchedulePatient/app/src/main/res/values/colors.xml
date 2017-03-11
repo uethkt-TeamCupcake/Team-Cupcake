@@ -41,5 +41,9 @@
     <color name="textTitleColor">#717070</color>
     <color name="dark_divider">#32393838</color>
 
+    <color name="color_text_address_item_lv">#9f3636</color>
+
+    <color name="blue">#2243d6</color>
+
 
 </resources>
