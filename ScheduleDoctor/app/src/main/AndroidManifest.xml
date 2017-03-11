@@ -24,7 +24,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.DetailRequestActivity"></activity>
+        <activity
+            android:name=".ui.activity.DetailRequestActivity"
+            android:label=""
+            android:theme="@style/AppThemeSimpleBar" />
+        <activity
+            android:name=".ui.activity.DetailRoomActivity"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

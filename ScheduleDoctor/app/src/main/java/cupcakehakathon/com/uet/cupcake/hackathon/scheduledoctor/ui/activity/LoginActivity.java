@@ -18,16 +18,12 @@ import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.Utils;
  * Created by Luong Tran on 3/10/2017.
  */
 
-public class LoginActivity
-    extends BaseActivity
-    implements Listener.listenerLogin {
+public class LoginActivity extends BaseActivity implements Listener.listenerLogin {
 
     @Override
     protected int getLayoutResource() {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow()
-            .setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                      WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         return R.layout.activity_login;
     }
 
@@ -39,14 +35,12 @@ public class LoginActivity
     @Override
     protected void initData(Bundle saveInstanceState) {
 
-        //ButterKnife.bind(this);
 
         // check login
         if (Utils.getValueFromPreferences(Constants.PREFERENCES_LOGIN, this) == null) {
             Utils.setValueToPreferences(Constants.PREFERENCES_LOGIN, Constants.LOGIN_FALSE, this);
         }
-        if (Utils.getValueFromPreferences(Constants.PREFERENCES_LOGIN, this)
-            .equalsIgnoreCase(Constants.LOGIN_TRUE)) {
+        if (Utils.getValueFromPreferences(Constants.PREFERENCES_LOGIN, this).equalsIgnoreCase(Constants.LOGIN_TRUE)) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         }
@@ -54,6 +48,8 @@ public class LoginActivity
         LoginFragment loginFragment = new LoginFragment();
         loginFragment.setListenerLogin(this);
         FragmentUtils.addFragment(loginFragment, R.id.frmLogin, this);
+
+
     }
 
     @Override
@@ -69,9 +65,8 @@ public class LoginActivity
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setExitTransition(new Explode());
-            startActivity(intent,
-                          ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this)
-                              .toBundle());
+            startActivity(intent
+                    , ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
         } else {
             startActivity(intent);
         }
