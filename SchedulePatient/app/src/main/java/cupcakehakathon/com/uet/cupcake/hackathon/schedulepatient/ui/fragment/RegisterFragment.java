@@ -1,24 +1,26 @@
 package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.fragment;
 
-
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
-
+import android.widget.Toast;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.R;
-import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.PostDataUtils;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.DialogUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.ToastUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener.Listener;
-import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.PatientObject;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RegisterFragment extends BaseFragment {
+public class RegisterFragment
+    extends BaseFragment
+    implements View.OnClickListener {
 
     private LinearLayout lnName;
     private TextInputLayout inputRegisterName;
@@ -42,18 +44,34 @@ public class RegisterFragment extends BaseFragment {
     private TextInputLayout inputRegisterAddress;
     private AppCompatEditText edtRegisterAddress;
     private LinearLayout lnGender;
-    private TextInputLayout inputRegisterGender;
-    private AppCompatEditText edtRegisterGender;
+    private RadioGroup mRadioGroup;
+    //private TextInputLayout inputRegisterGender;
+    //private AppCompatEditText edtRegisterGender;
     private TextView btnRegister;
+    DialogUtils du = new DialogUtils();
 
     private String name, userName, pass, birthday, address, identityNumber, insuranceCode, gender;
     private boolean checkFirst = true;
     private Listener.listenerInformation listenerInformation;
 
-
     @Override
     protected int getLayoutResource() {
         return R.layout.register_fragment;
+    }
+
+    @Override
+    public void onClick(View v) {
+        du.dialogShowDate(getActivity(), "Choose Date", new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePickerDialog view,
+                                  int year,
+                                  int monthOfYear,
+                                  int dayOfMonth) {
+                String date = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                Toast.makeText(getContext(), "date : " + date, Toast.LENGTH_SHORT).show();
+                edtRegisterBirthDay.setText(date);
+            }
+        });
     }
 
     private void findViews(View rootView) {
@@ -73,14 +91,17 @@ public class RegisterFragment extends BaseFragment {
         inputRegisterIdentity = (TextInputLayout) rootView.findViewById(R.id.inputRegisterIdentity);
         edtRegisterIdentity = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterIdentity);
         lnInsurance = (LinearLayout) rootView.findViewById(R.id.lnInsurance);
-        inputRegisterInsurance = (TextInputLayout) rootView.findViewById(R.id.inputRegisterInsurance);
+        inputRegisterInsurance =
+            (TextInputLayout) rootView.findViewById(R.id.inputRegisterInsurance);
         edtRegisterInsurance = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterInsurance);
         lnAddress = (LinearLayout) rootView.findViewById(R.id.lnAddress);
         inputRegisterAddress = (TextInputLayout) rootView.findViewById(R.id.inputRegisterAddress);
         edtRegisterAddress = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterAddress);
         lnGender = (LinearLayout) rootView.findViewById(R.id.lnGender);
-        inputRegisterGender = (TextInputLayout) rootView.findViewById(R.id.inputRegisterGender);
-        edtRegisterGender = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterGender);
+        mRadioGroup = (RadioGroup) rootView.findViewById(R.id.rdGender);
+        //inputRegisterGender = (TextInputLayout) rootView.findViewById(R.id.inputRegisterGender);
+        //edtRegisterGender = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterGender);
+
         btnRegister = (TextView) rootView.findViewById(R.id.btnRegister);
     }
 
@@ -98,18 +119,35 @@ public class RegisterFragment extends BaseFragment {
                 userName = edtRegisterUserName.getText().toString();
                 pass = edtRegisterPass.getText().toString();
                 birthday = edtRegisterBirthDay.getText().toString();
-                if (name.matches("") && userName.matches("") && pass.matches("") && birthday.matches("")) {
+                if (name.matches("")
+                    || userName.matches("")
+                    || pass.matches("")
+                    || birthday.matches("")) {
                     ToastUtils.quickToast(getActivity(), "Please input missing");
                 } else {
                     listenerInformation.showInformation(name, userName, pass, birthday);
                 }
             }
         });
-    }
+        inputRegisterBirthDay.setClickable(true);
+        edtRegisterBirthDay.setClickable(true);
+        edtRegisterBirthDay.setOnClickListener(this);
+        inputRegisterBirthDay.setOnClickListener(this);
 
+        int idRadio =  mRadioGroup.getCheckedRadioButtonId();
+        switch (idRadio){
+            case R.id.rbMale:
+                gender = "Male";
+                break;
+            case R.id.rbFemale:
+                gender = "Female";
+                break;
+
+        }
+
+    }
 
     public void setListenerInformation(Listener.listenerInformation listenerInformation) {
         this.listenerInformation = listenerInformation;
     }
-
 }

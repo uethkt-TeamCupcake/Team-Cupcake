@@ -16,6 +16,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -25,8 +26,11 @@ import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data.SQLControll
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.data.SQLHelper;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.service.DoctorService;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.ui.fragment.ListRequestFragment;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.ui.fragment.ListRoomFragment;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.ui.fragment.ListStandardFragment;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.Constants;
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.ToastUtils;
+import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -67,11 +71,12 @@ public class MainActivity extends BaseActivity
 
         //set text color
         tabLayout.setTabTextColors(ContextCompat
-                .getColorStateList(this, R.color.md_back_ground_dark_theme));
+                .getColorStateList(this, R.color.text_pressed_black_tab));
         tabLayout.setSelectedTabIndicatorColor(ContextCompat
-                .getColor(this, R.color.colorAccent));
+                .getColor(this, android.R.color.white));
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
     }
 
     @Override
@@ -141,13 +146,12 @@ public class MainActivity extends BaseActivity
 
         } else if (id == R.id.nav_send) {
 
+        } else if (id == R.id.nav_logout) {
+            Utils.deleteValueFromPreferences(Constants.PREFERENCES_LOGIN,getApplicationContext());
+            Utils.deleteValueFromPreferences(Constants.PREFERENCES_LOGIN_ID,getApplicationContext());
+            Utils.deleteValueFromPreferences(Constants.PREFERENCES_ID_FACULTY,getApplicationContext());
+            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
         }
-//        else if (id == R.id.nav_logout) {
-//            Utils.deleteValueFromPreferences(Constants.PREFERENCES_LOGIN, getApplicationContext());
-//            Utils.deleteValueFromPreferences(Constants.PREFERENCES_LOGIN_ID,getApplicationContext());
-//            Utils.deleteValueFromPreferences(Constants.PREFERENCES_ID_FACULTY,getApplicationContext());
-//            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
-//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -191,7 +195,10 @@ public class MainActivity extends BaseActivity
                     break;
                 }
                 case DoctorService.BROAD_CAST_UPDATE_ROOM: {
-
+                    // TODO : Update room demo
+                    SQLController controller = new SQLController(MainActivity.this);
+                    Log.i("MAIN", "onReceive: size " + controller.queryListRoom(SQLHelper.SQL_QUERY_ALL_ROOM).size());
+                    break;
                 }
             }
         }
@@ -209,7 +216,7 @@ public class MainActivity extends BaseActivity
                 case 0:
                     return new ListRequestFragment();
                 case 1:
-                    return new ListStandardFragment();
+                    return new ListRoomFragment();
             }
             return new ListRequestFragment();
         }

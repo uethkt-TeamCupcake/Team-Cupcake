@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.R;
@@ -28,7 +27,6 @@ public class LoginFragment
     private AppCompatEditText edtPassword;
     private TextView btnLogin;
     private TextView btnSignUp;
-    private ImageView imgAvatar;
 
 
     private Listener.listenerLogin listenerLogin;
@@ -45,7 +43,6 @@ public class LoginFragment
 
     @Override
     protected void initData(Bundle saveInstanceState) {
-        imgAvatar.setImageResource(R.drawable.schedule_doctor);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,8 +72,6 @@ public class LoginFragment
         inputPassword = (TextInputLayout) rootView.findViewById(R.id.inputPassword);
         edtPassword = (AppCompatEditText) rootView.findViewById(R.id.edtPassword);
         btnLogin = (TextView) rootView.findViewById(R.id.btnLogin);
-        btnSignUp = (TextView) rootView.findViewById(R.id.btnSignUp);
-        imgAvatar = (ImageView) rootView.findViewById(R.id.imgAvatar);
     }
 
     @Override

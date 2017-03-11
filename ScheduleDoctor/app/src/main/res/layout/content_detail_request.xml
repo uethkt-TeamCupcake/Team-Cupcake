@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@android:color/white"
+            android:paddingTop="24dp"
+            android:paddingBottom="8dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp">
+
+            <cupcakehakathon.com.uet.cupcake.hackathon.scheduledoctor.View.RoundedImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/doctor"
+                app:corner_radius="100dp" />
+
+            <RelativeLayout
+                android:id="@+id/layoutName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_toRightOf="@+id/imgAvatar">
+
+                <TextView
+                    style="@style/Text16dpBlackWrapContent"
+                    android:text="Họ tên" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="Trịnh Quốc Đạt" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutBirthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layoutName"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@+id/imgAvatar">
+
+                <TextView
+                    style="@style/Text16dpBlackWrapContent"
+                    android:text="Ngày sinh" />
+
+                <TextView
+                    android:id="@+id/tvBirthday"
+                    style="@style/TextMarquee.Text16dpBlackWrapContent"
+                    android:layout_alignParentRight="true"
+                    android:text="25/11/1996" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layoutBirthday"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@+id/imgAvatar">
+
+                <TextView
+                    style="@style/Text16dpBlackWrapContent"
+                    android:text="Giới tính" />
+
+                <TextView
+                    android:id="@+id/tvGender"
+                    style="@style/TextMarquee.Text16dpBlackWrapContent"
+                    android:layout_alignParentRight="true"
+                    android:text="nam" />
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <View style="@style/LineViewRider" />
+
+        <RelativeLayout style="@style/RelaytiveInfo">
+
+            <TextView
+                style="@style/Text16dpBlackWrapContent"
+                android:text="Bảo hiểm" />
+
+            <TextView
+                android:id="@+id/tvInsuranceCode"
+                style="@style/TextMarquee.Text16dpBlackWrapContent"
+                android:layout_alignParentRight="true"
+                android:text="123abc123" />
+        </RelativeLayout>
+
+        <View style="@style/LineViewRider" />
+
+        <RelativeLayout style="@style/RelaytiveInfo">
+
+            <TextView
+                style="@style/Text16dpBlackWrapContent"
+                android:text="Chứng minh thư" />
+
+            <TextView
+                android:id="@+id/tvIdentityNumber"
+                style="@style/TextMarquee.Text16dpBlackWrapContent"
+                android:layout_alignParentRight="true"
+                android:text="123456" />
+        </RelativeLayout>
+
+        <View style="@style/LineViewRider" />
+
+        <RelativeLayout style="@style/RelaytiveInfo">
+
+            <TextView
+                style="@style/Text16dpBlackWrapContent"
+                android:text="Địa chỉ" />
+
+            <TextView
+                android:id="@+id/tvAddress"
+                style="@style/TextMarquee.Text16dpBlackWrapContent"
+                android:layout_alignParentRight="true"
+                android:text="Trần Bình, Cầu Giấy, Hà Nội" />
+        </RelativeLayout>
+
+        <View style="@style/LineViewRider" />
+
+        <RelativeLayout style="@style/RelaytiveInfo">
+
+            <TextView
+                style="@style/Text16dpBlackWrapContent"
+                android:text="Yêu cầu khám vào " />
+
+            <TextView
+                android:id="@+id/tvDayTarget"
+                style="@style/TextMarquee.Text16dpBlackWrapContent"
+                android:layout_alignParentRight="true"
+                android:text="10/3/2017" />
+        </RelativeLayout>
+
+        <View style="@style/LineViewRider" />
+
+        <RelativeLayout style="@style/RelaytiveInfo">
+
+            <TextView
+                android:id="@+id/tvTitleSymtom"
+                style="@style/Text16dpBlackWrapContent"
+                android:layout_centerHorizontal="true"
+                android:text="Miêu tả bệnh" />
+
+            <TextView
+                android:id="@+id/tvSymptom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextMarquee"
+                android:text="Đau đầu,sổ mũi,..."
+                android:layout_below="@+id/tvTitleSymtom" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="355dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"></android.support.v7.widget.RecyclerView>
+
+        <TextView
+            style="@style/TitleGray"
+            android:text="Thời gian khám"/>
+
+        <View style="@style/LineViewRider" />
+
+        <RelativeLayout style="@style/RelaytiveInfo">
+
+            <TextView
+                android:id="@+id/titleApppointmentTime"
+                style="@style/Text16dpBlackWrapContent"
+                android:text="Thời gian bắt đầu" />
+
+            <TextView
+                android:id="@+id/tvApppointmentTime"
+                style="@style/TextMarquee.Text16dpBlackWrapContent"
+                android:layout_alignParentRight="true"
+                android:text="8:00" />
+        </RelativeLayout>
+        <View style="@style/LineViewRider" />
+
+        <RelativeLayout
+            android:id="@+id/layoutTimeEnd"
+            style="@style/RelaytiveInfoBackgroundClick">
+
+            <TextView
+                android:id="@+id/titleApppointmentTimeEnd"
+                style="@style/Text16dpBlackWrapContent"
+                android:text="Thời gian kết thúc" />
+
+            <TextView
+                android:id="@+id/tvApppointmentTimeEnd"
+                style="@style/TextMarquee.Text16dpBlackWrapContent"
+                android:layout_toLeftOf="@+id/imgMore"
+                android:layout_marginRight="4dp"/>
+            <ImageView
+                android:id="@+id/imgMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/cab_ic_more"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+        <View style="@style/LineViewRider" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:background="@android:color/white">
+
+            <EditText
+                android:id="@+id/edtDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Giải thích bệnh"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/colorAccent" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/btnDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="160dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/background_blue_pressed"
+            android:padding="4dp"
+            android:text="Hoàn thành"
+            android:textColor="@android:color/white" />
+
+
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

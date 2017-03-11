@@ -5,10 +5,12 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.R;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Constants;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.PostDataUtils;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.ToastUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Utils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener.Listener;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.PatientObject;
@@ -26,8 +28,9 @@ public class InformationFragment
     private AppCompatEditText edtRegisterInsurance;
     private TextInputLayout inputRegisterAddress;
     private AppCompatEditText edtRegisterAddress;
-    private TextInputLayout inputRegisterGender;
-    private AppCompatEditText edtRegisterGender;
+    //private TextInputLayout inputRegisterGender;
+    //private AppCompatEditText edtRegisterGender;
+    private RadioGroup mRadioGroup;
     private TextView btnRegister;
 
     private String name, userName, pass, birthday, address, identityNumber, insuranceCode, gender;
@@ -59,13 +62,25 @@ public class InformationFragment
                 insuranceCode = edtRegisterInsurance.getText().toString();
                 identityNumber = edtRegisterIdentity.getText().toString();
                 address = edtRegisterAddress.getText().toString();
-                gender = edtRegisterGender.getText().toString();
+                //gender = edtRegisterGender.getText().toString();
+                int id = mRadioGroup.getCheckedRadioButtonId();
+                if(id == R.id.rbMale){
+                    gender = "Male";
+                }else{
+                    gender = "Female";
+                }
+
+                if (insuranceCode.matches("")
+                    || identityNumber.matches("")
+                    || address.matches("")) {
+                    ToastUtils.quickToast(getActivity(), "Please input missing");
+                }
                 PostDataUtils postDataUtils = new PostDataUtils();
                 postDataUtils.setRegisterStatus(InformationFragment.this);
                 postDataUtils.register(getActivity(),
                                        new PatientObject(name,
                                                          userName,
-                                                         Integer.parseInt(gender),
+                                                        gender,
                                                          birthday,
                                                          identityNumber,
                                                          insuranceCode,
@@ -83,8 +98,9 @@ public class InformationFragment
         edtRegisterInsurance = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterInsurance);
         inputRegisterAddress = (TextInputLayout) rootView.findViewById(R.id.inputRegisterAddress);
         edtRegisterAddress = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterAddress);
-        inputRegisterGender = (TextInputLayout) rootView.findViewById(R.id.inputRegisterGender);
-        edtRegisterGender = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterGender);
+        mRadioGroup = (RadioGroup) rootView.findViewById(R.id.rdGender);
+        //inputRegisterGender = (TextInputLayout) rootView.findViewById(R.id.inputRegisterGender);
+        //edtRegisterGender = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterGender);
         btnRegister = (TextView) rootView.findViewById(R.id.btnRegister);
     }
 

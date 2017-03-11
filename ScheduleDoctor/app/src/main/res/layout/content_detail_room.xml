@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="?attr/actionBarSize">
+
+    <LinearLayout
+        style="@style/LinearLayoutInfor">
+        <TextView
+            style="@style/TitleInfor"
+            android:text="Giờ khám bệnh : "/>
+        <TextView
+            android:id="@+id/tvTimeStartEnd"
+            style="@style/TextInfor"
+            android:text="8:30 - 16:30"/>
+    </LinearLayout>
+    <LinearLayout
+        style="@style/LinearLayoutInfor">
+        <TextView
+            style="@style/TitleInfor"
+            android:text="Thời gian khám bệnh tiếp : " />
+        <TextView
+            android:id="@+id/tvTimeAvailable"
+            style="@style/TextInfor"
+            android:text="13:30" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LinearLayoutInfor">
+        <TextView
+            style="@style/TitleInfor"
+            android:text="Số người đã đăng ký : " />
+        <TextView
+            android:id="@+id/tvCurrentLimit"
+            style="@style/TextInfor"
+            android:text="20/30"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal"/>
+</LinearLayout>

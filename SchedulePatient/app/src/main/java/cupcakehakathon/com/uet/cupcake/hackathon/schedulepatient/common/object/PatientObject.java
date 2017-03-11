@@ -9,7 +9,7 @@ public class PatientObject {
     private int id;
     private String name;
 
-    private int gender;
+    private String gender;
     private String identityNumber;
     private String insuranceCode;
     private String address;
@@ -34,7 +34,7 @@ public class PatientObject {
         this.email = email;
     }
 
-    public PatientObject(int id, String name, String userName, int gender, String birthDay, String identityNumber, String insuranceCode, String passWord, String address) {
+    public PatientObject(int id, String name, String userName, String gender, String birthDay, String identityNumber, String insuranceCode, String passWord, String address) {
         this.id = id;
         this.name = name;
         this.userName = userName;
@@ -46,7 +46,7 @@ public class PatientObject {
         this.address = address;
     }
 
-    public PatientObject(String name, String userName, int gender, String birthDay, String identityNumber, String insuranceCode, String passWord, String address) {
+    public PatientObject(String name, String userName, String gender, String birthDay, String identityNumber, String insuranceCode, String passWord, String address) {
 
         this.name = name;
         this.userName = userName;
@@ -83,11 +83,11 @@ public class PatientObject {
         this.userName = userName;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
