@@ -62,10 +62,12 @@ public class LoginFragment extends BaseFragment implements Listener.loginStatus 
             public void onClick(View v) {
                 String name = edtUsername.getText().toString();
                 String pass = edtPassword.getText().toString();
-                if (name.matches("")) {
-                    ToastUtils.quickToast(getActivity(), "Enter your name");
-                } else if (pass.matches("")) {
-                    ToastUtils.quickToast(getActivity(), "Enter pass");
+                if (name.equals("")) {
+                    edtUsername.setError("bạn phải nhập tên đăng nhập");
+                    edtUsername.setFocusable(true);
+                } else if (pass.equals("")) {
+                    edtPassword.setError("bạn phải nhập mật khẩu");
+                    edtPassword.setFocusable(true);
                 } else {
                     PostDataUtils postDataUtils = new PostDataUtils();
                     postDataUtils.setLoginStatus(LoginFragment.this);

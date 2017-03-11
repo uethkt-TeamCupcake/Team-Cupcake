@@ -60,4 +60,15 @@
         <item name="android:windowBackground">@drawable/background_dialog_color</item>
     </style>
 
+    <style name="st_describe_title">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/margin_left_of_title_main</item>
+        <item name="android:layout_marginRight">@dimen/margin_right_of_title_main</item>
+        <item name="android:layout_marginTop">@dimen/margin_top_of_title_main</item>
+        <item name="android:textSize">@dimen/text_size_describe_title_main</item>
+        <item name="android:textColor">@color/color_text_address_item_lv</item>
+    </style>
+
+
 </resources>

@@ -11,7 +11,8 @@ import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.fragment.Inf
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.fragment.LoginFragment;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.fragment.RegisterFragment;
 
-public class LoginActivity extends BaseActivity implements Listener.listenerLogin, Listener.listenerInformation {
+public class LoginActivity extends BaseActivity
+        implements Listener.listenerLogin, Listener.listenerInformation {
 
     @Override
     protected int getLayoutResource() {
@@ -34,12 +35,15 @@ public class LoginActivity extends BaseActivity implements Listener.listenerLogi
     public void showRegister() {
         RegisterFragment registerFragment = new RegisterFragment();
         registerFragment.setListenerInformation(this);
+        registerFragment.setListenerLogin(this);
         FragmentUtils.replaceFragment(registerFragment, R.id.frmLogin, "REGISTER", this);
     }
 
     @Override
     public void showLogin() {
-
+        LoginFragment loginFragment = new LoginFragment();
+        loginFragment.setListenerLogin(this);
+        FragmentUtils.replaceFragment(loginFragment, R.id.frmLogin,"LOGIN",this);
     }
 
     @Override

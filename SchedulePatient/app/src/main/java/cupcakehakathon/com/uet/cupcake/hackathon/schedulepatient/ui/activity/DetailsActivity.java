@@ -1,7 +1,6 @@
 package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.activity;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -10,16 +9,19 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
@@ -31,7 +33,6 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -46,7 +47,6 @@ import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Toa
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.adapter.FacultyAdapter;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener.Listener;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.map.MapUtils;
-import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.map.WorkaroundMapFragment;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.FacultyObject;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.HospitalObject;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.data.SQLController;
@@ -68,6 +68,8 @@ public class DetailsActivity
                LocationListener {
 
     private String TAG = "DETAILS";
+    public static final int MAX_LINES = 3;
+    public static final int TWO_SPACES = 2;
 
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsingToolbarLayout;
@@ -78,7 +80,8 @@ public class DetailsActivity
     private RecyclerView recyclerView;
     private FacultyAdapter adapter;
     private NestedScrollView nestedScrollView;
-    private TextView txtSend;
+    private TextView txtAddress, txtPhone, txtRate, txtDescription;
+    private RatingBar mRatingBar;
 
     private GoogleMap mMaps;
     private Marker mCurrLocationMarker, mPlaceLocation;
@@ -98,7 +101,10 @@ public class DetailsActivity
         imgDetails = (ImageView) findViewById(R.id.imgDetailHospital);
         recyclerView = (RecyclerView) findViewById(R.id.rcvFaculty);
         nestedScrollView = (NestedScrollView) findViewById(R.id.nestedScroll);
-        txtSend = (TextView) findViewById(R.id.txtSend);
+        txtAddress = (TextView) findViewById(R.id.txtAddress);
+        txtPhone = (TextView) findViewById(R.id.txtPhone);
+        txtDescription = (TextView) findViewById(R.id.txtDescription);
+        mRatingBar = (RatingBar) findViewById(R.id.ratingBar);
     }
 
     @Override
@@ -106,7 +112,6 @@ public class DetailsActivity
         receiveId();
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        createMaps();
 
         SQLController controller = new SQLController(this);
         ArrayList<HospitalObject> ls =
@@ -129,10 +134,6 @@ public class DetailsActivity
                                   Double.valueOf(hospitalObject.getLongitude()));
 
         adapter = new FacultyAdapter(lsFaculty, this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,
-                                                              LinearLayoutManager.VERTICAL,
-                                                              false));
-
         RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenFaculty() {
             @Override
             public void onClick(int id) {
@@ -145,23 +146,21 @@ public class DetailsActivity
             e.printStackTrace();
         }
 
-        txtSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailsActivity.this, SendRequestActivity.class);
-                startActivity(intent);
-            }
-        });
-
         collapsingToolbarLayout.setTitle(hospitalObject.getName());
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.collapsedappbar);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.expandedappbar);
-    }
 
-    private void createMaps() {
-        SupportMapFragment mapFragment =
-            (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fmMaps);
-        mapFragment.getMapAsync(this);
+        txtAddress.setText(hospitalObject.getAddress());
+        txtPhone.setText(hospitalObject.getPhone());
+        //txtRate.setText(hospitalObject.getRate() + "");
+        mRatingBar.setMax(5);
+        txtDescription.setText(hospitalObject.getDesc());
+
+        mRatingBar.setRating((float) hospitalObject.getRate());
+
+        //seeMoreLine();
+
+        //makeTextViewResizable(txtDescription, 3, hospitalObject.getDesc(), true);
     }
 
     @Override
@@ -173,6 +172,40 @@ public class DetailsActivity
             }
         }
         return true;
+    }
+
+    private void seeMoreLine() {
+
+        final String desc = hospitalObject.getDesc();
+        txtDescription.setText(desc);
+        txtDescription.post(new Runnable() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void run() {
+                // Past the maximum number of lines we want to display.
+                if (txtDescription.getLineCount() > MAX_LINES) {
+                    int lastCharShown = txtDescription.getLayout().getLineVisibleEnd(MAX_LINES - 1);
+
+                    txtDescription.setMaxLines(MAX_LINES);
+
+                    String moreString = getApplicationContext().getString(R.string.more);
+                    String suffix = TWO_SPACES + moreString;
+
+                    // 3 is a "magic number" but it's just basically the length of the ellipsis we're going to insert
+                    String actionDisplayText =
+                        desc.substring(0, lastCharShown - suffix.length() - 3) + "..." + suffix;
+
+                    SpannableString truncatedSpannableString =
+                        new SpannableString(actionDisplayText);
+                    int startIndex = actionDisplayText.indexOf(moreString);
+                    truncatedSpannableString.setSpan(new ForegroundColorSpan(getColor(R.color.blue)),
+                                                     startIndex,
+                                                     startIndex + moreString.length(),
+                                                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    txtDescription.setText(truncatedSpannableString);
+                }
+            }
+        });
     }
 
     private void receiveId() {
@@ -323,30 +356,6 @@ public class DetailsActivity
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMaps = googleMap;
-
-        //        mMaps = ((WorkaroundMapFragment) getChildFragmentManager().findFragmentById(R.id.fmMaps)).getMap();
-        mMaps.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        mMaps.getUiSettings().setZoomControlsEnabled(true);
-
-        ((WorkaroundMapFragment) getSupportFragmentManager().findFragmentById(R.id.fmMaps)).setListener(
-            new WorkaroundMapFragment.OnTouchListener() {
-                @Override
-                public void onTouch() {
-                    nestedScrollView.requestDisallowInterceptTouchEvent(true);
-                }
-            });
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-                buildGoogleApiClient();
-                mMaps.setMyLocationEnabled(true);
-            }
-        } else {
-            buildGoogleApiClient();
-            mMaps.setMyLocationEnabled(true);
-        }
     }
 
     @Override
@@ -386,4 +395,5 @@ public class DetailsActivity
             .build();
         mGoogleApiClient.connect();
     }
+
 }

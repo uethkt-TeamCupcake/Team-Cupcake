@@ -18,7 +18,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1.2"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
@@ -91,38 +91,45 @@
                         <android.support.v7.widget.AppCompatEditText
                             android:id="@+id/edtPassword"
                             style="@style/EditText"
-                            android:password="true"
                             android:hint="Mật khẩu"
+                            android:password="true"
                             android:textSize="20dp" />
 
                     </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
 
+                <CheckBox
+                    android:id="@+id/checkStoreUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lưu tên đăng nhập"
+                    android:checked="false"
+                    android:layout_marginLeft="16dp"
+                    android:textColor="@android:color/white"
+                    android:buttonTint="@android:color/white"/>
+
                 <TextView
                     android:id="@+id/btnLogin"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/background_btn_login"
                     android:elevation="3dp"
-                    android:gravity="center"
-                    android:padding="12dp"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="8dp"
                     android:text="Đăng nhập"
-                    android:textColor="#fff"
-                    android:textSize="20dp" />
+                    android:textColor="@color/text_press_white"
+                    android:textSize="22dp" />
 
                 <TextView
                     android:id="@+id/btnSignUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="bottom|center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:paddingBottom="16dp"
                     android:paddingTop="16dp"
                     android:text="Đăng kí"
-                    android:textColor="#fff" />
+                    android:textColor="@color/text_press_white" />
 
 
             </LinearLayout>

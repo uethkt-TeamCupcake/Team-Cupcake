@@ -5,6 +5,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.R;
+import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.FragmentUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.DialogUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.ToastUtils;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.listener.Listener;
@@ -23,11 +25,35 @@ public class RegisterFragment
         extends BaseFragment
         implements View.OnClickListener {
 
+<<<<<<< HEAD
     private AppCompatEditText edtRegisterName;
     private AppCompatEditText edtRegisterUserName;
     private AppCompatEditText edtRegisterPass;
     private TextInputLayout inputRegisterBirthDay;
     private AppCompatEditText edtRegisterBirthDay;
+=======
+    Listener.listenerLogin listenerLogin;
+
+    private AppCompatEditText edtRegisterName;
+
+
+    private AppCompatEditText edtRegisterUserName;
+
+
+    private AppCompatEditText edtRegisterPass;
+
+    private TextInputLayout inputRegisterBirthDay;
+    private AppCompatEditText edtRegisterBirthDay;
+
+
+    private AppCompatEditText edtRegisterAddress;
+
+    private ImageView imgBack;
+
+    private RadioGroup mRadioGroup;
+    //private TextInputLayout inputRegisterGender;
+    //private AppCompatEditText edtRegisterGender;
+>>>>>>> 90f4c40652b624ee41fc319dc0173888dc238a9c
     private TextView btnRegister;
 
     private String name, userName, pass, birthday = "";
@@ -53,11 +79,42 @@ public class RegisterFragment
     }
 
     private void findViews(View rootView) {
+<<<<<<< HEAD
         edtRegisterName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterName);
         edtRegisterUserName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterUserName);
         edtRegisterPass = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterPass);
+=======
+
+
+        edtRegisterName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterName);
+
+        edtRegisterUserName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterUserName);
+
+        edtRegisterPass = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterPass);
+
+>>>>>>> 90f4c40652b624ee41fc319dc0173888dc238a9c
         inputRegisterBirthDay = (TextInputLayout) rootView.findViewById(R.id.inputRegisterBirthDay);
+
         edtRegisterBirthDay = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterBirthDay);
+<<<<<<< HEAD
+=======
+
+        edtRegisterAddress = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterAddress);
+
+        mRadioGroup = (RadioGroup) rootView.findViewById(R.id.rdGender);
+
+        imgBack = (ImageView) rootView.findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listenerLogin.showLogin();
+            }
+        });
+
+        //inputRegisterGender = (TextInputLayout) rootView.findViewById(R.id.inputRegisterGender);
+        //edtRegisterGender = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterGender);
+
+>>>>>>> 90f4c40652b624ee41fc319dc0173888dc238a9c
         btnRegister = (TextView) rootView.findViewById(R.id.btnRegister);
     }
 
@@ -88,6 +145,10 @@ public class RegisterFragment
         edtRegisterBirthDay.setClickable(true);
         edtRegisterBirthDay.setOnClickListener(this);
         inputRegisterBirthDay.setOnClickListener(this);
+    }
+
+    public void setListenerLogin(Listener.listenerLogin listenerLogin) {
+        this.listenerLogin = listenerLogin;
     }
 
     public void setListenerInformation(Listener.listenerInformation listenerInformation) {

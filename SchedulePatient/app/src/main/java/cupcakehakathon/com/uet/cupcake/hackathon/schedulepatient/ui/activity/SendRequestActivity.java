@@ -28,6 +28,7 @@ public class SendRequestActivity extends BaseActivity implements Listener.reques
     private Button btnSend;
 
     private String targetTime = "";
+    //private Toolbar toolbar;
 
     @Override
     protected int getLayoutResource() {
@@ -39,10 +40,13 @@ public class SendRequestActivity extends BaseActivity implements Listener.reques
         edtSymptom = (EditText) findViewById(R.id.edtSymptom);
         btnSend = (Button) findViewById(R.id.btnSend);
         edtDate = (EditText) findViewById(R.id.edtDate);
+        //toolbar = (Toolbar) findViewById(R.id.toolbarMain);
     }
 
     @Override
     protected void initData(Bundle saveInstanceState) {
+        //setSupportActionBar(toolbar);
+        //toolbar.setTitle("Send Request");
 
         edtDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +93,7 @@ public class SendRequestActivity extends BaseActivity implements Listener.reques
                 }
             }
         });
+
     }
 
     @Override
