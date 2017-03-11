@@ -5,6 +5,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -21,28 +22,24 @@ public class RegisterFragment
     extends BaseFragment
     implements View.OnClickListener {
 
-    private LinearLayout lnName;
-    private TextInputLayout inputRegisterName;
+
+
     private AppCompatEditText edtRegisterName;
-    private LinearLayout lnUserName;
-    private TextInputLayout inputRegisterUserName;
+
+
     private AppCompatEditText edtRegisterUserName;
-    private LinearLayout lnPass;
-    private TextInputLayout inputRegisterPass;
+
+
     private AppCompatEditText edtRegisterPass;
-    private LinearLayout lnBirthDay;
+
     private TextInputLayout inputRegisterBirthDay;
     private AppCompatEditText edtRegisterBirthDay;
-    private LinearLayout lnIdentity;
-    private TextInputLayout inputRegisterIdentity;
-    private AppCompatEditText edtRegisterIdentity;
-    private LinearLayout lnInsurance;
-    private TextInputLayout inputRegisterInsurance;
-    private AppCompatEditText edtRegisterInsurance;
-    private LinearLayout lnAddress;
-    private TextInputLayout inputRegisterAddress;
+
+
     private AppCompatEditText edtRegisterAddress;
-    private LinearLayout lnGender;
+
+    private ImageView imgBack;
+
     private RadioGroup mRadioGroup;
     //private TextInputLayout inputRegisterGender;
     //private AppCompatEditText edtRegisterGender;
@@ -73,30 +70,30 @@ public class RegisterFragment
     }
 
     private void findViews(View rootView) {
-        lnName = (LinearLayout) rootView.findViewById(R.id.lnName);
-        inputRegisterName = (TextInputLayout) rootView.findViewById(R.id.inputRegisterName);
+
+
         edtRegisterName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterName);
-        lnUserName = (LinearLayout) rootView.findViewById(R.id.lnUserName);
-        inputRegisterUserName = (TextInputLayout) rootView.findViewById(R.id.inputRegisterUserName);
+
         edtRegisterUserName = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterUserName);
-        lnPass = (LinearLayout) rootView.findViewById(R.id.lnPass);
-        inputRegisterPass = (TextInputLayout) rootView.findViewById(R.id.inputRegisterPass);
+
         edtRegisterPass = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterPass);
-        lnBirthDay = (LinearLayout) rootView.findViewById(R.id.lnBirthDay);
+
         inputRegisterBirthDay = (TextInputLayout) rootView.findViewById(R.id.inputRegisterBirthDay);
+
         edtRegisterBirthDay = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterBirthDay);
-        lnIdentity = (LinearLayout) rootView.findViewById(R.id.lnIdentity);
-        inputRegisterIdentity = (TextInputLayout) rootView.findViewById(R.id.inputRegisterIdentity);
-        edtRegisterIdentity = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterIdentity);
-        lnInsurance = (LinearLayout) rootView.findViewById(R.id.lnInsurance);
-        inputRegisterInsurance =
-            (TextInputLayout) rootView.findViewById(R.id.inputRegisterInsurance);
-        edtRegisterInsurance = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterInsurance);
-        lnAddress = (LinearLayout) rootView.findViewById(R.id.lnAddress);
-        inputRegisterAddress = (TextInputLayout) rootView.findViewById(R.id.inputRegisterAddress);
+
         edtRegisterAddress = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterAddress);
-        lnGender = (LinearLayout) rootView.findViewById(R.id.lnGender);
+
         mRadioGroup = (RadioGroup) rootView.findViewById(R.id.rdGender);
+
+        imgBack = (ImageView) rootView.findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
+
         //inputRegisterGender = (TextInputLayout) rootView.findViewById(R.id.inputRegisterGender);
         //edtRegisterGender = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterGender);
 

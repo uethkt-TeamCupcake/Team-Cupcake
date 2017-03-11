@@ -1,10 +1,12 @@
 package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.fragment;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.R;
@@ -32,6 +34,7 @@ public class InformationFragment
     //private AppCompatEditText edtRegisterGender;
     private RadioGroup mRadioGroup;
     private TextView btnRegister;
+    private ImageView imgBack;
 
     private String name, userName, pass, birthday, address, identityNumber, insuranceCode, gender;
 
@@ -99,6 +102,13 @@ public class InformationFragment
         inputRegisterAddress = (TextInputLayout) rootView.findViewById(R.id.inputRegisterAddress);
         edtRegisterAddress = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterAddress);
         mRadioGroup = (RadioGroup) rootView.findViewById(R.id.rdGender);
+        imgBack = (ImageView) rootView.findViewById(R.id.imgBack);
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
         //inputRegisterGender = (TextInputLayout) rootView.findViewById(R.id.inputRegisterGender);
         //edtRegisterGender = (AppCompatEditText) rootView.findViewById(R.id.edtRegisterGender);
         btnRegister = (TextView) rootView.findViewById(R.id.btnRegister);

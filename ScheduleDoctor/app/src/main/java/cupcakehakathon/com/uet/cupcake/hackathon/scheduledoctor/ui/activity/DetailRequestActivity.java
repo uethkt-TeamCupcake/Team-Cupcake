@@ -111,6 +111,7 @@ public class DetailRequestActivity extends BaseActivity
                 , new ListRoomAdapter.OnRoomClickListener() {
             @Override
             public void onClickListener(View v, int position) {
+                tvApppointmentTime.setText(roomObjects.get(position).getTimeAvailable());
                 changeSelectedPosition(position);
             }
 
