@@ -121,7 +121,7 @@
                     android:gravity="bottom|center"
                     android:paddingBottom="16dp"
                     android:paddingTop="16dp"
-                    android:text="Đăng kí"
+                    android:text="Tạo tài khoản"
                     android:textColor="#fff" />
 
 
