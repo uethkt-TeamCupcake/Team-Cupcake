@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
+
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Constants;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Globals;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.RecycleUtils;
@@ -28,7 +29,9 @@ import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.data.SQLHelper;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.service.PatientService;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.activity.BaseActivity;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.ui.activity.DetailsActivity;
+
 import java.util.ArrayList;
+
 import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
@@ -98,7 +101,7 @@ public class MainActivity extends BaseActivity
         recyclerView.getItemAnimator().setChangeDuration(500);
 
         toggle = new ActionBarDrawerToggle(
-            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
@@ -186,19 +189,7 @@ public class MainActivity extends BaseActivity
                     // update list
                     SQLController controller = new SQLController(MainActivity.this);
                     ArrayList<HospitalObject> ls = controller.queryListHospital(SQLHelper.SQL_SELECT_ALL_HOSPITAL);
-<<<<<<< HEAD
-//                    adapter = new HospitalAdapter(ls, MainActivity.this);
-//                    RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenHospital() {
-//                        @Override
-//                        public void onClick(int id) {
-//                            Intent i = new Intent(MainActivity.this, DetailsActivity.class);
-//                            i.putExtra(Constants.PASS_ID_HOSPITAL, id + 1);
-//                            startActivity(i);
-//                        }
-//                    }, MainActivity.this);
-                    break;
-=======
-                    adapter = new HospitalAdapter(ls, MainActivity.this);
+                    adapter.setLsHospital(ls);
                     RecycleUtils.showListRcv(recyclerView, adapter, new Listener.listenHospital() {
                         @Override
                         public void onClick(int id) {
@@ -207,8 +198,7 @@ public class MainActivity extends BaseActivity
                             startActivity(i);
                         }
                     }, MainActivity.this);
-                    //break;
->>>>>>> 88bb4dc6aab2ced0bdf817e460adc2cec312ebd9
+                    break;
                 }
                 case PatientService.BROADCAST_ERROR_REQ_HOSPITAL: {
                     ToastUtils.quickToast(MainActivity.this, "ERROR REQUEST TO SERVER");
