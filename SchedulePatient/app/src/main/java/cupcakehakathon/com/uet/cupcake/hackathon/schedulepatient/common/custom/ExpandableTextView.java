@@ -1,4 +1,4 @@
-package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.custom;/*
+package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.custom;/*
  * Copyright (C) 2011 The Android Open Source Project
  * Copyright 2014 Manabu Shimobe
  *
@@ -19,11 +19,12 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
+
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.R;
 
 public class ExpandableTextView
-    extends TextView
-    implements View.OnClickListener {
+        extends TextView
+        implements View.OnClickListener {
     private static final int MAX_LINES = 4;
     private int currentMaxLines = Integer.MAX_VALUE;
 
@@ -49,14 +50,14 @@ public class ExpandableTextView
             public void run() {
                 if (getLineCount() > MAX_LINES) {
                     setCompoundDrawablesWithIntrinsicBounds(0,
-                                                            0,
-                                                            0,
-                                                            R.drawable.ic_menu);
+                            0,
+                            0,
+                            R.drawable.ic_menu);
                 } else {
                     setCompoundDrawablesWithIntrinsicBounds(0,
-                                                            0,
-                                                            0,
-                                                            0);
+                            0,
+                            0,
+                            0);
                 }
 
                 setMaxLines(MAX_LINES);

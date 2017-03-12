@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarDetails"
@@ -55,22 +55,23 @@
             android:orientation="vertical"
             android:padding="5dp"
             android:paddingTop="10dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
                 <RatingBar
                     android:id="@+id/ratingBar"
+                    style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:max="5"
                     android:layout_gravity="center_horizontal"
-                    style="?android:attr/ratingBarStyleSmall"
-                    android:numStars="4"/>
+                    android:max="5"
+                    android:numStars="4" />
 
             </LinearLayout>
 
@@ -78,75 +79,77 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
 
-                <cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.custom.ExpandableTextView
+                <cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.custom.ExpandableTextView
                     android:id="@+id/txtDescription"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
 
             </LinearLayout>
-
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.5"
-                    android:textSize="15sp"
-                    android:text="Địa chỉ"/>
+                    android:text="Địa chỉ"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/txtAddress"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="7.5"
-                    android:textSize="15sp"
-                    android:text="Hà Nội, Việt Nam"/>
+                    android:text="Hà Nội, Việt Nam"
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="5dp">
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2.5"
-                    android:textSize="15sp"
-                    android:text="Điện thoại"/>
+                    android:text="Điện thoại"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/txtPhone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="7.5"
-                    android:textSize="15sp"
-                    android:text="0973548875"/>
+                    android:text="0973548875"
+                    android:textSize="15sp" />
 
             </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="LIST "
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rcvFaculty"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:nestedScrollingEnabled="true">
+                android:nestedScrollingEnabled="false">
 
             </android.support.v7.widget.RecyclerView>
 

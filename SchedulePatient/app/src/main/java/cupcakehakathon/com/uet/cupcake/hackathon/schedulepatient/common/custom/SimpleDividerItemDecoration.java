@@ -1,4 +1,4 @@
-package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.custom;
+package cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.custom;
 
 import android.content.res.Resources;
 import android.graphics.Canvas;

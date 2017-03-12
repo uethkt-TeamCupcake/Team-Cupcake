@@ -5,8 +5,16 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.R;
+
 import java.util.Calendar;
 
 /**
@@ -14,13 +22,14 @@ import java.util.Calendar;
  */
 
 public class DialogUtils {
+
     public static void dialogShowDate(Activity activity, String title, DatePickerDialog.OnDateSetListener dateChangedListener) {
         Calendar now = Calendar.getInstance();
         DatePickerDialog dpd = DatePickerDialog.newInstance(
-            dateChangedListener,
-            now.get(Calendar.YEAR),
-            now.get(Calendar.MONTH),
-            now.get(Calendar.DAY_OF_MONTH)
+                dateChangedListener,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
         );
         //        dpd.showYearPickerFirst(true);
         dpd.dismissOnPause(true);

@@ -45,5 +45,21 @@
 
     <color name="blue">#2243d6</color>
 
+    <color name="backgroud_button_dialog">#22764c</color>
+    <color name="text_button_dialog">#ffff</color>
 
+    <color name="alert_dialog_button_green_pressed2">#158591</color>
+    <color name="alert_dialog_button_green_pressed1">#0a4c53</color>
+    <color name="alert_dialog_button_green_focused2">#158591</color>
+    <color name="alert_dialog_button_green_focused1">#19875b</color>
+    <color name="alert_dialog_button_green2">#1acee1</color>
+    <color name="alert_dialog_button_green1">#127339</color>
+
+
+    <color name="alert_dialog_button_red_pressed2">#e94b45</color>
+    <color name="alert_dialog_button_red_pressed1">#e22d27</color>
+    <color name="alert_dialog_button_red_focused2">#ac1a10</color>
+    <color name="alert_dialog_button_red_focused1">#ec7068</color>
+    <color name="alert_dialog_button_red1">#df543b</color>
+    <color name="alert_dialog_button_red2">#ef2d1c</color>
 </resources>
