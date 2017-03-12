@@ -53,9 +53,9 @@ public class HistoryAdapter  extends RecyclerView.Adapter<HistoryAdapter.History
         @Override
         public void onClick(View v) {
             if(v == itemView){
-                historyClickListener.onHistoryClickListener();
+                historyClickListener.onHistoryClickListener(getAdapterPosition());
             } else {
-                historyClickListener.onAcceptClickListener();
+                historyClickListener.onAcceptClickListener(getAdapterPosition());
             }
         }
     }
@@ -86,8 +86,8 @@ public class HistoryAdapter  extends RecyclerView.Adapter<HistoryAdapter.History
     }
 
     public interface HistoryClickListener{
-        void onHistoryClickListener();
-        void onAcceptClickListener();
+        void onHistoryClickListener(int id);
+        void onAcceptClickListener(int id);
     }
 
 
