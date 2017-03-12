@@ -15,7 +15,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
