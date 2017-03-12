@@ -28,8 +28,6 @@ import java.util.Map;
 
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.AppController;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.R;
-import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Constants;
-import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Global;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.Util.Globals;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.ListFaculty;
 import cupcakehakathon.com.uet.cupcake.hackathon.schedulepatient.common.object.ListHospital;
@@ -75,7 +73,7 @@ public class PatientService extends Service {
                     break;
                 }
                 case VALUE_GET_RESPONSE_OF_DOCTOR: {
-                    reqResponseDoctor(this, Global.idRequestResponse);
+
                     break;
                 }
             }
@@ -172,104 +170,6 @@ public class PatientService extends Service {
         });
         AppController.getInstance().addToRequestQueue(strReq, TAG_REQ_FACULTY);
     }
-    private void reqResponseDoctor(final Context context, final int id) {
-        StringRequest strReq =
-                new StringRequest(Request.Method.POST, URL_CHECK_RESPONSE_DOCTOR, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        String result = response.toString();
-                        Log.i(TAG, "onResponse: " + result);
-                        try {
-                            JSONArray jsonArray = new JSONArray(result);
-                            JSONObject js = jsonArray.getJSONObject(0);
-                            String status = js.getString("message");
-                            if (status.equalsIgnoreCase(RESPONSE_SUCCESS)) {
-                                JSONArray jsArr = js.getJSONArray("value");
-                                JSONObject jsResponse = jsArr.getJSONObject(0);
-                                ResponseObject responseObject = new ResponseObject(jsResponse.getString("appointmentTime"), jsResponse.getString("appointmentTimeEnd"),
-                                        jsResponse.getString("doctorDesc"), jsResponse.getString("doctorName"), jsResponse.getInt("limitOneDay"), jsResponse.getString("responseDesc"),
-                                        jsResponse.getString("roomName"));
-
-                                // save history
-                                SQLController controller = new SQLController(context);
-                                boolean insert = controller.insertHistoryRes(responseObject.getAppointmentTime(), responseObject.getAppointmentTimeEnd(),
-                                        responseObject.getDoctorDesc(), responseObject.getDoctorName(), responseObject.getResponseDesc(),
-                                        responseObject.getRoomName(), Globals.idRequestResponse);
-                                insert = false;
-                                displayNotification("AAAA");
-                            } else {
-                                new Handler().postDelayed(new Runnable() {
-                                    public void run() {
-                                        reqResponseDoctor(context, Globals.idRequestResponse);
-                                    }
-                                }, TIME_REQUEST_TO_SERVER);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                    }
-                }) {
-                    /**
-                     * @return
-                     */
-                    @Override
-                    protected Map<String, String> getParams() {
-                        Map<String, String> params = new HashMap<String, String>();
-                        params.put(REQUEST_ID, id + "");
-                        return params;
-                    }
-
-                    @Override
-                    public Priority getPriority() {
-                        return Priority.IMMEDIATE;
-                    }
-                };
-        AppController.getInstance().addToRequestQueue(strReq, TAG_REQ_RESPONSE);
-    }
-    protected void displayNotification(String message) {
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext());
-
-        mBuilder.setContentTitle("You have a new message");
-
-        mBuilder.setContentText(message);
-
-        mBuilder.setTicker("Message from my doctor!");
-
-
-        mBuilder.setSmallIcon(R.drawable.icon_app_schedule);
-
-        // mBuilder.setNumber(++numMessagesOne);
-//        Intent resultIntent = new Intent(getApplicationContext(), HistoryActivity.class);
-//
-//        resultIntent.putExtra("notificationId", notificationId);
-//        resultIntent.putExtra("message", message);
-
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
-
-//        stackBuilder.addParentStack(NotificationActivity.class);
-
-//        stackBuilder.addNextIntent(resultIntent);
-
-        PendingIntent resultPendingIntent =
-
-                stackBuilder.getPendingIntent(0, PendingIntent.FLAG_ONE_SHOT);
-
-        mBuilder.setContentIntent(resultPendingIntent);
-
-        myNotificationManager =
-                (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-
-        myNotificationManager.notify(notificationId, mBuilder.build());
-    }
-    private static final int TIME_REQUEST_TO_SERVER = 60 * 1000;
-    private String TAG_REQ_RESPONSE = "REQ_RESPONSE";
-    public static final String REQUEST_ID = "id";
-    public static String RESPONSE_SUCCESS = "success";
-    private static final String URL_CHECK_RESPONSE_DOCTOR = "http://cupcake96uet.hol.es/api/api_get_checked_request.php";
 
 
 }
